@@ -15,6 +15,9 @@ main.o: main.c
 samIO.o: lib/samIO.c
 	$(CC) $(FLAGS) lib/samIO.c
 
+doxygen: $(OBJS)
+	doxygen Doxyfile
+
 clean:
 	rm -f $(OBJS)
 
