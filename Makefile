@@ -12,6 +12,9 @@ all: $(OBJS)
 main.o: main.c
 	$(CC) $(FLAGS) main.c
 
+samIO.o: lib/samIO.c
+	$(CC) $(FLAGS) lib/samIO.c
+
 clean:
 	rm -f $(OBJS)
 
