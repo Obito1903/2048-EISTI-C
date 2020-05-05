@@ -1,0 +1,7 @@
+Docs/Doxygen/*
+projet
+Savs
+Savs/*
+*.o
+.vscode
+.vscode/*
