@@ -9,47 +9,49 @@
 
 #include "main.h"
 
-void reset_terminal_mode()
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 14:10
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void traitementArgs(int argc, char const *argv[])
 {
-    tcsetattr(0, TCSANOW, &orig_termios);
-}
-
-void set_conio_terminal_mode()
-{
-    struct termios new_termios;
-
-    /* take two copies - one for now, one for later */
-    tcgetattr(0, &orig_termios);
-    memcpy(&new_termios, &orig_termios, sizeof(new_termios));
-
-    /* register cleanup handler, and set the new terminal mode */
-    atexit(reset_terminal_mode);
-    cfmakeraw(&new_termios);
-    tcsetattr(0, TCSANOW, &new_termios);
-}
-
-int kbhit()
-{
-    struct timeval tv = {0L, 0L};
-    fd_set fds;
-    FD_ZERO(&fds);
-    FD_SET(0, &fds);
-    return select(1, &fds, NULL, NULL, &tv);
+    int int_arg;
+    for (int_arg = 0; int_arg < argc; int_arg++)
+    {
+        if (strcmp(argv[int_arg], "prout"))
+        {
+            printf("prout\n");
+        }
+    }
 }
 
 int main(int argc, char const *argv[])
 {
-    set_conio_terminal_mode();
 
-    bool jeuActif = TRUE;
+    /*
+    set_conio_terminal_mode();
+    Bool jeuActif = True;
     char KeyStrok;
     while (!kbhit())
     {
     }
     KeyStrok = getchar();
     printf("KeyStrok: %d\n", KeyStrok);
-
+    printf("\e[38;2;0;255;0m salut c'est cool \e[39m \e[49m");
     reset_terminal_mode();
+    */
+    if (argc > 1)
+    {
+        traitementArgs(argc, argv);
+    }
+
+    mainAffichage();
 
     return (0);
 }

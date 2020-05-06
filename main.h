@@ -14,25 +14,7 @@
 */
 #define __MAIN_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <termios.h>
-#include <sys/select.h>
-
-struct termios orig_termios;
-
-/**
- * @enum bool
- * Boolean
- */
-typedef enum
-{
-    /*! Valeur Faux (0) */
-    FALSE,
-    /*! Valeur Vrai (1) */
-    TRUE
-} bool;
+#include "src/affichage.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
