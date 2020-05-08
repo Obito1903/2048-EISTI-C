@@ -1,18 +1,18 @@
-/** @file affichage.h
+/** @file affichageTerm.h
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 05 May 2020 23:49
  *
- *  @brief
+ *  @brief Header de gestionAffichage
  *
  */
 
-#ifndef __AFFICHAGE_H__
+#ifndef __AFFICHAGE_TERM_H__
 /**
-*  @def __AFFICHAGE_H__
+*  @def __GESTION_AFFICHAGE_H__
 *  Constante permettant de savoirs si le fichier à déjà été chargé.
 */
-#define __AFFICHAGE_H__
+#define __AFFICHAGE_TERM_H__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -84,6 +84,7 @@ struct noeudListTabStr
     /*! pionteur vers element courant*/
     char *str;
     uint hauteur;
+    uint id;
     Bool selection;
 
     /*! pionteur vers element Suivant */
@@ -157,7 +158,7 @@ void freeEcran(screen *Ecran);
  *
  *  @brief Initialise un ecran
  *
- *  @param[in]
+ *  @param[in,out] Ecran : pointeur vers l'écran a initialiser
  *
  */
 void initEcran(screen *Ecran);
@@ -178,11 +179,30 @@ Bool afficheEcran(screen *Ecran);
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
+ *  @date Wed 06 May 2020 11:49
+ *
+ *  @brief divise la chaine de caractères en plusieur chaine si
+ * la chaine est plus longue que l'ecran
+ *
+ *  @param[in] lMax : longeur max que peut prendre un chaine
+ *  @param[in] str : chaine a diviser
+ *  @return un tableau contenant les sous chaines
+ *
+ */
+tabStr *divString(uint lMax, char *str);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
  *  @date Wed 06 May 2020 11:28
  *
- *  @brief
+ *  @brief ajoute les chaine de caractère a l'affichage
  *
- *  @param[in]
+ *  @param[in,out] Ecran : Pointeur vers l'écran
+ *  @param[in] hauteur : position ou afficher la string
+ *  @param[in] strOrig : la chaine a afficher
+ *  @param[in] selection : l'etat de selection de la chaine
+ *  @return Le nombre de ligne pris par la chaine
  *
  */
 uint __AfficheStringEcran(screen *Ecran, uint hauteur, char *strOrig, Bool selection);
@@ -190,13 +210,69 @@ uint __AfficheStringEcran(screen *Ecran, uint hauteur, char *strOrig, Bool selec
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
- *  @date Wed 06 May 2020 21:25
+ *  @date Wed 06 May 2020 16:59
  *
- *  @brief
+ *  @brief Affiche la liste de chaine a l'écran
  *
- *  @param[in]
+ *  @param[in,out] Ecran : pointeur vers l'écran
+ *  @param[in] listtStr : La liste de chaine a afficher
  *
  */
-void mainAffichage(void);
+void affichesListeStringEcran(screen *Ecran, lListTabStr *listeStr);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 17:10
+ *
+ *  @brief alloue et initialise un noeud d'un liste de chaine
+ *
+ *  @param[in] hauteur : hauteur de la chaine a ajouter
+ *  @param[in] str : chaine a ajouter
+ *  @return le noeud créé
+ *
+ */
+noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 17:08
+ *
+ *  @brief Ajoute un chaine a une liste de chaine
+ *
+ *  @param[in,out] liste : pointeur vers la liste ou ajouté la chaine
+ *  @param[in] hauteur : position de la nouvel chaine
+ *  @param[in] str : chaine a ajouter
+ *  @param[in] selection : si la chaine ajouter est selectione ou pas
+ *
+ */
+void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, int id);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 21:34
+ *
+ *  @brief Trouve la chaine actuellement selectioné dans la liste
+ *
+ *  @param[in] liste : pointeur vers la liste
+ *  @return pointeur vers la chaine selctionné
+ *
+ */
+noeudListTabStr *trouveStrSelection(lListTabStr *liste);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 21:26
+ *
+ *  @brief Change la chaine selctionné dans une liste
+ *
+ *  @param[in,out] liste : pointeur vers la liste
+ *  @param[in] direction : direction de la prochaine selection (0 pour suivante, 1 pour la precdente)
+ *
+ */
+void changeSelection(lListTabStr *liste, int direction);
 
 #endif // __AFFICHAGE_H__

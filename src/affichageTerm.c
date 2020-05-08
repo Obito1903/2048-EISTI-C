@@ -1,13 +1,13 @@
-/** @file affichage.c
+/** @file affichageTerm.c
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 05 May 2020 23:49
  *
- *  @brief
+ *  @brief Librairie pour la gestion de l'affichage dans un terminal
  *
  */
 
-#include "affichage.h"
+#include "affichageTerm.h"
 
 void reset_terminal_mode(void)
 {
@@ -114,7 +114,7 @@ void initEcran(screen *Ecran)
 
 Bool afficheEcran(screen *Ecran)
 {
-    //system("clear");
+    system("clear");
     uint int_h;
     uint int_l;
     pixelRGB *bPixel;
@@ -136,17 +136,6 @@ Bool afficheEcran(screen *Ecran)
     return (True);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 11:49
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
 tabStr *divString(uint lMax, char *str)
 {
     tabStr *listeStr = (tabStr *)malloc(sizeof(tabStr)); // Variable de retour
@@ -212,16 +201,6 @@ uint __AfficheStringEcran(screen *Ecran, uint hauteur, char *strOrig, Bool selec
     return retour;
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 16:59
- *
- *  @brief
- *
- *  @param[in]
- *
- */
 void affichesListeStringEcran(screen *Ecran, lListTabStr *listeStr)
 {
     uint decalage = 0;
@@ -233,17 +212,6 @@ void affichesListeStringEcran(screen *Ecran, lListTabStr *listeStr)
     }
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 17:10
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
 noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str)
 {
     noeudListTabStr *elementListe = (noeudListTabStr *)malloc(sizeof(noeudListTabStr)); // Variable de retour
@@ -264,24 +232,15 @@ noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str)
     return (elementListe);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 17:08
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str)
+void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, int id)
 {
     if (liste->str == NULL)
     {
         liste->str = (char *)malloc(sizeof(char) * strlen(str));
         strcpy(liste->str, str);
+        liste->id = id;
         liste->hauteur = hauteur;
-        liste->selection = True;
+        liste->selection = selection;
     }
     else
     {
@@ -291,22 +250,13 @@ void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str)
         {
             noeudActu = noeudActu->suivant;
         }
+        nouveauNoeud->id = id;
         nouveauNoeud->precedent = noeudActu;
+        nouveauNoeud->selection = selection;
         noeudActu->suivant = nouveauNoeud;
     }
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 21:34
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
 noeudListTabStr *trouveStrSelection(lListTabStr *liste)
 {
     noeudListTabStr *noeudSelection = NULL; // Variable de retour
@@ -322,16 +272,6 @@ noeudListTabStr *trouveStrSelection(lListTabStr *liste)
     return (noeudSelection);
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 21:26
- *
- *  @brief
- *
- *  @param[in]
- *
- */
 void changeSelection(lListTabStr *liste, int direction)
 {
     noeudListTabStr *currentString = trouveStrSelection(liste);
@@ -345,92 +285,4 @@ void changeSelection(lListTabStr *liste, int direction)
         currentString->selection = False;
         currentString->precedent->selection = True;
     }
-}
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 23:25
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
-int testKey(void)
-{
-    int commande; // Variable de retour
-
-    while (!kbhit())
-    {
-    }
-    int entre = getchar();
-
-    while (entre == 27 || entre == 91)
-    {
-        entre = getchar();
-    }
-
-    switch (entre)
-    {
-    case 'c':
-        commande = 1;
-        break;
-    case 65:
-        commande = 2;
-        break;
-    case 66:
-        commande = 3;
-        break;
-    default:
-        break;
-    }
-
-    return (commande);
-}
-
-void mainAffichage(void)
-{
-    Bool affichageActif = True;
-    lListTabStr *listeStr = allocNoeudListTabStr(0, NULL);
-    lListTabStr *listeStrCmd = allocNoeudListTabStr(0, NULL);
-    char commande;
-    ajouteStringListe(listeStr, 10, "1-Jouer");
-    ajouteStringListe(listeStr, 12, "2-Quitter");
-    ajouteStringListe(listeStr, 14, "3-Prout");
-
-    ajouteStringListe(listeStrCmd, 24, "C-Quit | Up | Down");
-
-    set_conio_terminal_mode();
-
-    while (affichageActif)
-    {
-        screen *Ecran = allocEcran(25, 50);
-        initEcran(Ecran);
-        system("clear");
-        affichesListeStringEcran(Ecran, listeStr);
-        affichesListeStringEcran(Ecran, listeStrCmd);
-        afficheEcran(Ecran);
-        while (!(commande = testKey()))
-        {
-        }
-        switch (commande)
-        {
-        case 1:
-            affichageActif = False;
-            break;
-        case 2:
-            changeSelection(listeStr, 0);
-            break;
-        case 3:
-            changeSelection(listeStr, 1);
-            break;
-        default:
-            break;
-        }
-
-        freeEcran(Ecran);
-    }
-    reset_terminal_mode();
 }

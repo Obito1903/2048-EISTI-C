@@ -14,7 +14,7 @@
 */
 #define __MAIN_H__
 
-#include "src/affichage.h"
+#include "src/gestionAffichage.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
