@@ -28,7 +28,7 @@
  *  @return liste des chaine a afficher
  *
  */
-lListTabStr *initAccueil(void);
+lListTabStr *initAccueil(etatJeu *jeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -42,6 +42,22 @@ lListTabStr *initAccueil(void);
  *
  */
 void executeAccueil(etatJeu *jeu, int commande);
+
+//------------------------------------------------//
+
+//---------------------Infos---------------------//
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Fri 08 May 2020 19:11
+ *
+ *  @brief initialise l'affichage des infos
+ *
+ *  @return liste des chaine a afficher
+ *
+ */
+lListTabStr *initInfos(etatJeu *jeu);
 
 //------------------------------------------------//
 
@@ -93,5 +109,17 @@ int testKey(void);
  *
  */
 void mainAffichage(etatJeu *jeu);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Sat 09 May 2020 12:50
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+lListTabStr *convertPlateau(etatJeu *jeu);
 
 #endif // __GESTIONAFFICHAGE_H__

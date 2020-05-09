@@ -41,9 +41,21 @@ etatJeu *allocJeu(uint taille)
 etatJeu *initJeu(uint taille)
 {
     etatJeu *jeu = allocJeu(taille); // Variable de retour
-    jeu->tabMenu->menus[0] = initAccueil();
-    jeu->menuCourant = jeu->tabMenu->menus[0];
+    jeu->tabMenu->menus[0] = initInfos(jeu);
+    jeu->tabMenu->menus = (lListTabStr **)realloc(jeu->tabMenu->menus, sizeof(lListTabStr *) * (jeu->tabMenu->taille + 1));
+    jeu->tabMenu->taille++;
+    jeu->tabMenu->menus[1] = initAccueil(jeu);
+    jeu->menuCourant = jeu->tabMenu->menus[1];
     jeu->actif = True;
+    uint int_y;
+    uint int_x;
+    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+    {
+        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
+        {
+            jeu->plateau->tab[int_y][int_x] = 2048;
+        }
+    }
     return (jeu);
 }
 

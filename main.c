@@ -50,7 +50,6 @@ int main(int argc, char const *argv[])
     {
         traitementArgs(argc, argv);
     }
-
     etatJeu *jeu = initJeu(4);
     mainAffichage(jeu);
     freeJeu(jeu);
