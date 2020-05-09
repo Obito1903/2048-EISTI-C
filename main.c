@@ -34,24 +34,10 @@ void traitementArgs(int argc, char const *argv[])
 int main(int argc, char const *argv[])
 {
 
-    /*
-    set_conio_terminal_mode();
-    Bool jeuActif = True;
-    char KeyStrok;
-    while (!kbhit())
-    {
-    }
-    KeyStrok = getchar();
-    printf("KeyStrok: %d\n", KeyStrok);
-    printf("\e[38;2;0;255;0m salut c'est cool \e[39m \e[49m");
-    reset_terminal_mode();
-    */
     if (argc > 1)
     {
         traitementArgs(argc, argv);
     }
-    etatJeu *jeu = initJeu(4);
-    mainAffichage(jeu);
-    freeJeu(jeu);
+    printf("A\n");
     return (0);
 }

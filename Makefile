@@ -1,6 +1,6 @@
-OBJS	= main.o samIO.o samBase.o jeuBase.o affichageTerm.o gestionAffichage.o
-SOURCE	= main.c lib/samIO.c lib/samBase.c src/jeuBase.c src/affichageTerm.c src/gestionAffichage.c
-HEADER	= main.h lib/samIO.h lib/samBase.c src/jeuBase.h src/affichageTerm.h src/gestionAffichage.h
+OBJS	= main.o samIO.o samBase.o
+SOURCE	= main.c lib/samIO.c lib/samBase.c
+HEADER	= main.h lib/samIO.h lib/samBase.c
 OUT	= projet
 CC	 = gcc
 FLAGS	 = -g -c -Wall -Wextra -pedantic
@@ -17,15 +17,6 @@ samIO.o: lib/samIO.c
 
 samBase.o: lib/samBase.c
 	$(CC) $(FLAGS) lib/samBase.c
-
-jeuBase.o:src/jeuBase.c
-	$(CC) $(FLAGS) src/jeuBase.c
-
-affichageTerm.o: src/affichageTerm.c
-	$(CC) $(FLAGS) src/affichageTerm.c
-
-gestionAffichage.o: src/gestionAffichage.c
-	$(CC) $(FLAGS) src/gestionAffichage.c
 
 doxygen: $(OBJS)
 	doxygen Doxyfile
