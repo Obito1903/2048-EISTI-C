@@ -14,7 +14,12 @@
 */
 #define __MAIN_H__
 
+#include <time.h>
 #include "src/jeuBase.h"
+#include "src/init2048.h"
+#include "src/deplacement.h"
+#include "src/jeu2048.h"
+#include "src/affichage.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

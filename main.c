@@ -34,10 +34,22 @@ void traitementArgs(int argc, char const *argv[])
 int main(int argc, char const *argv[])
 {
 
+    srandom(time(NULL));
+
     if (argc > 1)
     {
         traitementArgs(argc, argv);
     }
-    printf("A\n");
+
+    etatJeu *jeu = initJeu(4);
+    while (finPartie(jeu))
+    {
+        ajouteCase(jeu);
+        affichagePlateau(jeu);
+        printf("quel direction ?\n");
+        direction direction = saisieIntTest(0, 3);
+        deplacement(jeu, direction);
+    }
+
     return (0);
 }
