@@ -11,7 +11,7 @@
 
 lListTabStr *initAccueil(void)
 {
-    lListTabStr *listeMenu = allocNoeudListTabStr(0, NULL); // Variable de retour
+    lListTabStr *listeMenu = allocNoeudListTabStr(0, NULL, 0); // Variable de retour
 
     ajouteStringListe(listeMenu, 11, "1-Jouer", True, 1);
     ajouteStringListe(listeMenu, 13, "2-Quitter", False, 2);
@@ -19,16 +19,16 @@ lListTabStr *initAccueil(void)
     return (listeMenu);
 }
 
-void executeAccueil(lListTabStr *listeCurrent, int commande)
+void executeAccueil(etatJeu *jeu, int commande)
 {
     switch (commande)
     {
     case 1:
         printf("Le jeu n'est pas encore implenter\r\n");
-        jeuON = False;
+        jeu->actif = False;
         break;
     case 2:
-        jeuON = False;
+        jeu->actif = False;
         break;
 
     default:
@@ -37,31 +37,31 @@ void executeAccueil(lListTabStr *listeCurrent, int commande)
     }
 }
 
-void executeMenu(lListTabStr *listeCurrent)
+void executeMenu(etatJeu *jeu)
 {
-    int commande = trouveStrSelection(listeCurrent)->id;
+    int commande = trouveStrSelection(jeu->menuCourant)->id;
 
     if (commande < 3)
     {
-        executeAccueil(listeCurrent, commande);
+        executeAccueil(jeu, commande);
     }
 }
 
-void executeCmd(lListTabStr *listeCurrent, int commande)
+void executeCmd(etatJeu *jeu, int commande)
 {
     switch (commande)
     {
     case 1:
-        jeuON = False;
+        jeu->actif = False;
         break;
     case 2:
-        changeSelection(listeCurrent, 0);
+        changeSelection(jeu->menuCourant, 0);
         break;
     case 3:
-        changeSelection(listeCurrent, 1);
+        changeSelection(jeu->menuCourant, 1);
         break;
     case 4:
-        executeMenu(listeCurrent);
+        executeMenu(jeu);
         break;
     default:
         break;
@@ -104,33 +104,27 @@ int testKey(void)
     return (commande);
 }
 
-void mainAffichage(void)
+void mainAffichage(etatJeu *jeu)
 {
-    jeuON = True;
     int commande;
-    lListTabStr *listeSelectionCurrent;
-    lListTabStr *listeStrInfo = allocNoeudListTabStr(0, NULL);
+    //lListTabStr *listeStrInfo = allocNoeudListTabStr(0, NULL);
 
-    lListTabStr *lAcceuil = initAccueil();
-
-    listeSelectionCurrent = lAcceuil;
-
-    ajouteStringListe(listeStrInfo, 24, "C-Quit | Up | Down", True, 1);
+    //ajouteStringListe(listeStrInfo, 24, "C-Quit | Up | Down", True, 1);
 
     set_conio_terminal_mode();
 
-    while (jeuON)
+    while (jeu->actif)
     {
-        screen *Ecran = allocEcran(25, 50);
-        initEcran(Ecran);
-        affichesListeStringEcran(Ecran, listeSelectionCurrent);
-        affichesListeStringEcran(Ecran, listeStrInfo);
-        afficheEcran(Ecran);
+        jeu->Ecran = allocEcran(25, 50);
+        initEcran(jeu->Ecran);
+        affichesListeStringEcran(jeu->Ecran, jeu->menuCourant);
+        //affichesListeStringEcran(jeu->Ecran, listeStrInfo);
+        afficheEcran(jeu->Ecran);
         while (!(commande = testKey()))
         {
         }
-        executeCmd(listeSelectionCurrent, commande);
-        freeEcran(Ecran);
+        executeCmd(jeu, commande);
+        freeEcran(jeu->Ecran);
     }
     reset_terminal_mode();
 }

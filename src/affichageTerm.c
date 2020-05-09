@@ -212,12 +212,13 @@ void affichesListeStringEcran(screen *Ecran, lListTabStr *listeStr)
     }
 }
 
-noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str)
+noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str, uint id)
 {
     noeudListTabStr *elementListe = (noeudListTabStr *)malloc(sizeof(noeudListTabStr)); // Variable de retour
+
     if (str != NULL)
     {
-        elementListe->str = (char *)malloc(sizeof(char) * strlen(str));
+        elementListe->str = (char *)malloc(sizeof(char) * (strlen(str) + 1));
         strcpy(elementListe->str, str);
     }
     else
@@ -225,18 +226,20 @@ noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str)
         elementListe->str = NULL;
     }
 
+    elementListe->id = id;
     elementListe->hauteur = hauteur;
     elementListe->selection = False;
     elementListe->precedent = NULL;
     elementListe->suivant = NULL;
+
     return (elementListe);
 }
 
-void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, int id)
+void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, uint id)
 {
     if (liste->str == NULL)
     {
-        liste->str = (char *)malloc(sizeof(char) * strlen(str));
+        liste->str = (char *)malloc(sizeof(char) * (strlen(str) + 1));
         strcpy(liste->str, str);
         liste->id = id;
         liste->hauteur = hauteur;
@@ -244,13 +247,12 @@ void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selecti
     }
     else
     {
-        noeudListTabStr *nouveauNoeud = allocNoeudListTabStr(hauteur, str);
+        noeudListTabStr *nouveauNoeud = allocNoeudListTabStr(hauteur, str, id);
         noeudListTabStr *noeudActu = liste;
         while (noeudActu->suivant != NULL)
         {
             noeudActu = noeudActu->suivant;
         }
-        nouveauNoeud->id = id;
         nouveauNoeud->precedent = noeudActu;
         nouveauNoeud->selection = selection;
         noeudActu->suivant = nouveauNoeud;

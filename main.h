@@ -14,6 +14,7 @@
 */
 #define __MAIN_H__
 
+#include "src/jeuBase.h"
 #include "src/gestionAffichage.h"
 
 /**

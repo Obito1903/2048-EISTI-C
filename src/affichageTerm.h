@@ -14,14 +14,11 @@
 */
 #define __AFFICHAGE_TERM_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "../lib/samBase.h"
 #include <string.h>
 #include <termios.h>
 #include <sys/select.h>
 #include <fcntl.h>
-#include "jeuBase.h"
 
 struct termios orig_termios;
 
@@ -232,7 +229,7 @@ void affichesListeStringEcran(screen *Ecran, lListTabStr *listeStr);
  *  @return le noeud créé
  *
  */
-noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str);
+noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str, uint id);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -247,7 +244,7 @@ noeudListTabStr *allocNoeudListTabStr(uint hauteur, char *str);
  *  @param[in] selection : si la chaine ajouter est selectione ou pas
  *
  */
-void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, int id);
+void ajouteStringListe(lListTabStr *liste, uint hauteur, char *str, Bool selection, uint id);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
