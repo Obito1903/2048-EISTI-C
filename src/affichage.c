@@ -93,5 +93,8 @@ void affichagePlateau(etatJeu *jeu)
         printf("══════╩");
     }
     printf("══════╝\n\r");
+
+    printf("Coup n°%d\n\r", jeu->nbCoups);
+
     printf("Flèches pour deplacer\n\rC - Quitter | S - Sauvegarder\n\r");
 }

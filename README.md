@@ -6,6 +6,8 @@ Projet 2020.
 
 ### Compilation
 
+Pour l'instant la compilation ne fonctionne que sous linux en raison de certaines dépendance au niveau du terminal n'existant pas sous windows.
+
 ```shell
 make all && make clean
 ```
@@ -21,6 +23,20 @@ make cleanall
 ```shell
 ./projet
 ```
+
+#### Options
+
+```shell
+./projet -t <taille>
+```
+
+Permet de specifier la taille du plateau.
+
+```shell
+./projet -l <Chemain sav>
+```
+
+Permet de charger un fichier de sauvegarde.
 
 ## Implementation
 
