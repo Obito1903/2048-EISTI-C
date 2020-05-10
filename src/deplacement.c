@@ -9,25 +9,12 @@
 
 #include "deplacement.h"
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Sat 09 May 2020 16:58
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-
 Bool deplacement(etatJeu *jeu, direction direction)
 {
     Bool estDeplace = True;
-    printf("A\n");
     switch (direction)
     {
     case D_NORD:
-        printf("A Nord\n");
         DirectionNord(jeu);
         break;
     case D_SUD:
@@ -44,6 +31,7 @@ Bool deplacement(etatJeu *jeu, direction direction)
         estDeplace = False;
         break;
     }
+    jeu->nbCoups++;
     return estDeplace;
 }
 
@@ -105,6 +93,33 @@ void DirectionEst(etatJeu *jeu)
 {
     int int_x;
     int int_y;
+    for (int_x = jeu->plateau->taille - 1; int_x >= 0; int_x--)
+    {
+        for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+        {
+            if (jeu->plateau->tab[int_y][int_x] != 0)
+            {
+                int x = int_x;
+                while ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == 0))
+                {
+                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x];
+                    jeu->plateau->tab[int_y][x] = 0;
+                    x++;
+                }
+                if ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == jeu->plateau->tab[int_y][x]))
+                {
+                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x + 1] * 2;
+                    jeu->plateau->tab[int_y][x] = 0;
+                }
+            }
+        }
+    }
+}
+
+void DirectionOuest(etatJeu *jeu)
+{
+    int int_x;
+    int int_y;
     for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
     {
         for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
@@ -121,33 +136,6 @@ void DirectionEst(etatJeu *jeu)
                 if ((x - 1 >= 0) && (jeu->plateau->tab[int_y][x - 1] == jeu->plateau->tab[int_y][x]))
                 {
                     jeu->plateau->tab[int_y][x - 1] = jeu->plateau->tab[int_y][x - 1] * 2;
-                    jeu->plateau->tab[int_y][x] = 0;
-                }
-            }
-        }
-    }
-}
-
-void DirectionOuest(etatJeu *jeu)
-{
-    int int_x;
-    int int_y;
-    for (int_x = jeu->plateau->taille - 1; int_x > 0; int_x--)
-    {
-        for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
-        {
-            if (jeu->plateau->tab[int_y][int_x] != 0)
-            {
-                int x = int_x;
-                while ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == 0))
-                {
-                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x];
-                    jeu->plateau->tab[int_y][x] = 0;
-                    x++;
-                }
-                if ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == jeu->plateau->tab[int_y][x]))
-                {
-                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x + 1] * 2;
                     jeu->plateau->tab[int_y][x] = 0;
                 }
             }

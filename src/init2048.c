@@ -44,6 +44,64 @@ etatJeu *initJeu(int taille)
             jeu->plateau->tab[int_y][int_x] = 0;
         }
     }
+    ajouteCase(jeu);
+    return (jeu);
+}
 
+void freeJeu(etatJeu *jeu)
+{
+    int int_y;
+    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+    {
+        free(jeu->plateau->tab[int_y]);
+    }
+    free(jeu->plateau->tab);
+    free(jeu->plateau);
+    free(jeu);
+}
+
+void savJeu(etatJeu *jeu)
+{
+    int int_y;
+    int int_x;
+    mkdir("./Savs", 0700);
+    FILE *fichierSauv = fopen("./Savs/sav.bin", "wb");
+    fwrite(&jeu->plateau->taille, sizeof(int), 1, fichierSauv);
+    fwrite(&jeu->nbCoups, sizeof(uint), 1, fichierSauv);
+    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+    {
+        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
+        {
+            fwrite(&jeu->plateau->tab[int_y][int_x], sizeof(int), 1, fichierSauv);
+        }
+    }
+    fclose(fichierSauv);
+    printf("Partei sauvegarder !\n\r");
+    jeu->jeuActif = False;
+}
+
+etatJeu *chargeJeu(char *chemin)
+{
+    int int_y;
+    int int_x;
+    FILE *fichierSauv;
+    fichierSauv = fopen(chemin, "rb");
+    int taille;
+    if (fichierSauv == NULL)
+    {
+        fprintf(stderr, "Le fichier de sauvegarde n'existe pas");
+        exit(EXIT_FAILURE);
+    }
+    fread(&taille, sizeof(int), 1, fichierSauv);
+    etatJeu *jeu = initJeu(taille); // Variable de retour
+    fread(&jeu->nbCoups, sizeof(uint), 1, fichierSauv);
+    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+    {
+        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
+        {
+            fread(&jeu->plateau->tab[int_y][int_x], sizeof(int), 1, fichierSauv);
+        }
+    }
+    fclose(fichierSauv);
     return (jeu);
 }

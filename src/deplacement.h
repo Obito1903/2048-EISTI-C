@@ -22,10 +22,13 @@
  */
 typedef enum
 {
-    /*! entiers qui stoquent la direction */
+    /*! Direction Nord */
     D_NORD = 0,
+    /*! Direction SUD */
     D_SUD = 1,
+    /*! Direction EST */
     D_EST = 2,
+    /*! Direction OUEST */
     D_OUEST = 3
 } direction;
 
@@ -34,12 +37,12 @@ typedef enum
  *  @version 0.1
  *  @date Sat 09 May 2020 18:09
  *
- *  @brief fonction déplacement
+ *  @brief Execute le deplacement
  *
  *  @param[in,out] jeu : pointeur vers le plateau
  *  @param[in] direction : direction choisie par le joueur
  *
- *  @return[in] estDeplace : booléen qui vérifie si les cases ont bien été déplacées
+ *  @return True si le pion a était deplacer, False sinon
  */
 Bool deplacement(etatJeu *jeu, direction direction);
 

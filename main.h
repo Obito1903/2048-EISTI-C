@@ -16,10 +16,20 @@
 
 #include <time.h>
 #include "src/jeuBase.h"
-#include "src/init2048.h"
-#include "src/deplacement.h"
 #include "src/jeu2048.h"
-#include "src/affichage.h"
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 06 May 2020 14:10
+ *
+ *  @brief Traite les argument passer en parametre de l'executable
+ *
+ *  @param[in] argc : nombre d'arguments
+ *  @param[in] argv : Tableau d'arguments
+ *
+ */
+void traitementArgs(int argc, char *argv[]);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -33,6 +43,6 @@
  *  @return EXIT_SUCCESS : le programme doit se terminer normalement
  *
  */
-int main(int argc, char const *argv[]);
+int main(int argc, char *argv[]);
 
 #endif // __MAIN_H__

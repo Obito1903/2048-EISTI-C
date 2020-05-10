@@ -40,6 +40,8 @@ typedef struct
     plateau *plateau;
     /*! compteur du nombre de coups */
     uint nbCoups;
+    /*! Si le jeu est en cours ou non */
+    Bool jeuActif;
 } etatJeu;
 
 #endif // __JEUBASE_H__

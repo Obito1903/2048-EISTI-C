@@ -9,47 +9,40 @@
 
 #include "main.h"
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 06 May 2020 14:10
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void traitementArgs(int argc, char const *argv[])
+void traitementArgs(int argc, char *argv[])
 {
-    int int_arg;
-    for (int_arg = 0; int_arg < argc; int_arg++)
+    int taille = 4;
+    etatJeu *jeu = NULL;
+    if (argc > 1)
     {
-        if (strcmp(argv[int_arg], "prout"))
+        int int_arg;
+        for (int_arg = 0; int_arg < argc; int_arg++)
         {
-            printf("prout\n");
+            if (!strcmp(argv[int_arg], "-t"))
+            {
+                taille = atoi(argv[int_arg + 1]);
+                jeu = initJeu(taille);
+            }
+            if (!strcmp(argv[int_arg], "-l"))
+            {
+
+                jeu = chargeJeu(argv[int_arg + 1]);
+            }
         }
     }
+    if (jeu == NULL)
+    {
+        jeu = initJeu(4);
+    }
+
+    executeJeu(jeu);
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
 
     srandom(time(NULL));
-
-    if (argc > 1)
-    {
-        traitementArgs(argc, argv);
-    }
-
-    etatJeu *jeu = initJeu(4);
-    while (finPartie(jeu))
-    {
-        ajouteCase(jeu);
-        affichagePlateau(jeu);
-        printf("quel direction ?\n");
-        direction direction = saisieIntTest(0, 3);
-        deplacement(jeu, direction);
-    }
+    traitementArgs(argc, argv);
 
     return (0);
 }
