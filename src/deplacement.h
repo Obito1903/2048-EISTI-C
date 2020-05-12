@@ -33,20 +33,6 @@ typedef enum
 } direction;
 
 /**
- *  @author Hugo Mosser <hugomosser@eisti.eu>
- *  @version 0.1
- *  @date Sat 09 May 2020 18:09
- *
- *  @brief Execute le deplacement
- *
- *  @param[in,out] jeu : pointeur vers le plateau
- *  @param[in] direction : direction choisie par le joueur
- *
- *  @return True si le pion a était deplacer, False sinon
- */
-Bool deplacement(etatJeu *jeu, direction direction);
-
-/**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Sat 09 May 2020 17:01
@@ -56,7 +42,7 @@ Bool deplacement(etatJeu *jeu, direction direction);
  *  @param[in,out] jeu : pointeur vers le plateau
  *
  */
-void DirectionNord(etatJeu *jeu);
+Bool DirectionNord(etatJeu *jeu);
 
 /**
  *  @author Hugo Mosser <hugomosser@eisti.eu>
@@ -69,7 +55,7 @@ void DirectionNord(etatJeu *jeu);
  *
  *
  */
-void DirectionSud(etatJeu *jeu);
+Bool DirectionSud(etatJeu *jeu);
 
 /**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
@@ -81,7 +67,7 @@ void DirectionSud(etatJeu *jeu);
  *  @param[in,out] jeu : pointeur vers le plateau
  *
  */
-void DirectionEst(etatJeu *jeu);
+Bool DirectionEst(etatJeu *jeu);
 
 /**
  *  @author Hugo Mosser<mosserhugo@eisti.eu>
@@ -94,6 +80,6 @@ void DirectionEst(etatJeu *jeu);
  *
  *
  */
-void DirectionOuest(etatJeu *jeu);
+Bool DirectionOuest(etatJeu *jeu);
 
 #endif // __DEPLACEMENT_H__

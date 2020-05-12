@@ -5,7 +5,7 @@ OUT	= projet
 CC	 = gcc
 SDLFLAGS=`sdl2-config --cflags --libs`
 FLAGS	 = -g -c -Wall -Wextra -pedantic
-LFLAGS	 = -Llib
+LFLAGS	 = -Llib -lm
 IFLAGS	 = -Iinclude
 
 all: $(OBJS)

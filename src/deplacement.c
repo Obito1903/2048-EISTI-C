@@ -9,33 +9,7 @@
 
 #include "deplacement.h"
 
-Bool deplacement(etatJeu *jeu, direction direction)
-{
-    Bool estDeplace = True;
-    switch (direction)
-    {
-    case D_NORD:
-        DirectionNord(jeu);
-        break;
-    case D_SUD:
-        DirectionSud(jeu);
-        break;
-    case D_EST:
-        DirectionEst(jeu);
-        break;
-    case D_OUEST:
-        DirectionOuest(jeu);
-        break;
-    default:
-        printf("Cette direction n'existe pas , veuillez rentrer une commande valide");
-        estDeplace = False;
-        break;
-    }
-    jeu->nbCoups++;
-    return estDeplace;
-}
-
-void DirectionNord(etatJeu *jeu)
+Bool DirectionNord(etatJeu *jeu)
 {
     int int_x;
     int int_y;
@@ -60,9 +34,10 @@ void DirectionNord(etatJeu *jeu)
             }
         }
     }
+    return True;
 }
 
-void DirectionSud(etatJeu *jeu)
+Bool DirectionSud(etatJeu *jeu)
 {
     int int_x;
     int int_y;
@@ -87,9 +62,10 @@ void DirectionSud(etatJeu *jeu)
             }
         }
     }
+    return True;
 }
 
-void DirectionEst(etatJeu *jeu)
+Bool DirectionEst(etatJeu *jeu)
 {
     int int_x;
     int int_y;
@@ -114,9 +90,10 @@ void DirectionEst(etatJeu *jeu)
             }
         }
     }
+    return True;
 }
 
-void DirectionOuest(etatJeu *jeu)
+Bool DirectionOuest(etatJeu *jeu)
 {
     int int_x;
     int int_y;
@@ -141,4 +118,5 @@ void DirectionOuest(etatJeu *jeu)
             }
         }
     }
+    return True;
 }

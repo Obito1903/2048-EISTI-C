@@ -16,7 +16,7 @@ void mainAffichage(etatJeu *jeu)
         printf("SDL_Init Error: %s \n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+    SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, FENETRE_L, FENETRE_H, SDL_WINDOW_SHOWN);
     if (win == NULL)
     {
         printf("SDL_CreateWindow Error: %s \n", SDL_GetError());
@@ -37,6 +37,7 @@ void mainAffichage(etatJeu *jeu)
     jeu->jeuActif = True;
     while (jeu->jeuActif)
     {
+        SDL_RenderClear(ren);
         gestionEvenement(jeu, &event);
         dessiner(ren, tabTex, jeu);
         SDL_RenderPresent(ren);
@@ -73,12 +74,23 @@ SDL_Texture *loadTexture(const char *file, SDL_Renderer *ren)
 tabTextures *chargeTextures(SDL_Renderer *ren)
 {
     tabTextures *tabTex = (tabTextures *)malloc(sizeof(tabTextures)); // Variable de retour
-    tabTex->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *) * 1);
-    tabTex->tabTex[0] = loadTexture("./src/assets/image1.bmp", ren);
+    tabTex->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *) * 11);
+    tabTex->tabTex[0] = loadTexture("./src/assets/2.bmp", ren);
+    tabTex->tabTex[1] = loadTexture("./src/assets/4.bmp", ren);
+    tabTex->tabTex[2] = loadTexture("./src/assets/8.bmp", ren);
+    tabTex->tabTex[3] = loadTexture("./src/assets/16.bmp", ren);
+    tabTex->tabTex[4] = loadTexture("./src/assets/32.bmp", ren);
+    tabTex->tabTex[5] = loadTexture("./src/assets/64.bmp", ren);
+    tabTex->tabTex[6] = loadTexture("./src/assets/128.bmp", ren);
+    tabTex->tabTex[7] = loadTexture("./src/assets/256.bmp", ren);
+    tabTex->tabTex[8] = loadTexture("./src/assets/512.bmp", ren);
+    tabTex->tabTex[9] = loadTexture("./src/assets/1024.bmp", ren);
+    tabTex->tabTex[10] = loadTexture("./src/assets/2048.bmp", ren);
+
     return (tabTex);
 }
 
-void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y)
+void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w)
 {
     //Setup the destination rectangle to be at the position we want
     SDL_Rect dst;
@@ -86,29 +98,39 @@ void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y)
     dst.y = y;
     //Query the texture to get its width and height to use
     SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
+    dst.w = w;
+    dst.h = h;
     SDL_RenderCopy(ren, tex, NULL, &dst);
 }
 
 void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
 {
+    Bool deplacement = False;
     switch (touche)
     {
     case SDLK_ESCAPE:
         jeu->jeuActif = False;
         break;
     case SDLK_UP:
+        deplacement = DirectionNord(jeu);
         break;
-
     case SDLK_DOWN:
+        deplacement = DirectionSud(jeu);
         break;
-
     case SDLK_LEFT:
+        deplacement = DirectionOuest(jeu);
         break;
-
     case SDLK_RIGHT:
+        deplacement = DirectionEst(jeu);
         break;
     default:
         break;
+    }
+
+    if (deplacement)
+    {
+        ajouteCase(jeu);
+        jeu->nbCoups++;
     }
 }
 
@@ -133,34 +155,23 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event)
 
 void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
 {
-    /*
-    SDL_Surface *cube2 = NULL;
-    SDL_Surface *cube4 = NULL;
-    SDL_Surface *cube8 = NULL;
-    SDL_Surface *cube16 = NULL;
-    SDL_Surface *cube32 = NULL;
-    SDL_Surface *cube64 = NULL;
-    SDL_Surface *cube128 = NULL;
-    SDL_Surface *cube256 = NULL;
-    SDL_Surface *cube512 = NULL;
-    SDL_Surface *cube1024 = NULL;
-    SDL_Surface *cube2048 = NULL;
+    dessinePlateau(renderer, tabTex, jeu);
+}
 
-    cube2 = IMG_Load("image cube 2");
-    cube4 = IMG_Load("image cube 4");
-    cube8 = IMG_Load("image cube 8");
-    cube16 = IMG_Load("image cube 16");
-    cube32 = IMG_Load("image cube 32");
-    cube64 = IMG_Load("image cube 64");
-    cube128 = IMG_Load("image cube 128");
-    cube256 = IMG_Load("image cube 256");
-    cube512 = IMG_Load("image cube 512");
-    cube1024 = IMG_Load("image cube 1024");
-    cube2048 = IMG_Load("image cube 2048");
-
-    creer une fonction jouer pour blit les surfaces
-    */
-
-    renderTexture(tabTex->tabTex[0], renderer, 10, 10);
-    renderTexture(tabTex->tabTex[0], renderer, 200, 10);
+void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
+{
+    int tailleCasePx = FENETRE_H / (jeu->plateau->taille + 2);
+    int decallageVert = tailleCasePx - (4 * (jeu->plateau->taille - 1));
+    int int_y;
+    int int_x;
+    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
+    {
+        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
+        {
+            if (jeu->plateau->tab[int_y][int_x] != 0)
+            {
+                renderTexture(tabTex->tabTex[(int)(log2(jeu->plateau->tab[int_y][int_x])) - 1], renderer, (int_x * (tailleCasePx + 4)) + decallageVert, (int_y * (tailleCasePx + 4)) + decallageVert, tailleCasePx, tailleCasePx);
+            }
+        }
+    }
 }

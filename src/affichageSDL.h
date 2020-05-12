@@ -17,6 +17,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_video.h>
 
+#include <math.h>
 #include "jeu2048.h"
 
 typedef struct
@@ -24,6 +25,9 @@ typedef struct
     SDL_Texture **tabTex;
     int taille;
 } tabTextures;
+
+#define FENETRE_H 480
+#define FENETRE_L 640
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -72,7 +76,7 @@ tabTextures *chargeTextures(SDL_Renderer *ren);
  *  @param[in]
  *
  */
-void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y);
+void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -109,5 +113,17 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event);
  *
  */
 void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 12:29
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu);
 
 #endif // __AFFICHAGESDL_H__
