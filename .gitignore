@@ -1,7 +1,11 @@
 Docs/Doxygen/*
 projet
+bin/src
+*.dll
+*.exe
 Savs
 Savs/*
 *.o
 .vscode
 .vscode/*
+bin/2048.zip
