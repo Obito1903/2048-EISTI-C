@@ -34,7 +34,7 @@ void traitementArgs(int argc, char *argv[])
     {
         jeu = initJeu(4);
     }
-    mainAffichage();
+    mainAffichage(jeu);
     //executeJeu(jeu);
 }
 

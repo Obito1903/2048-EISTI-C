@@ -29,6 +29,54 @@
  *  @param[in]
  *
  */
-void mainAffichage(void);
+void mainAffichage(etatJeu *jeu);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 11:03
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void gestionEvenement(etatJeu *jeu, SDL_Event *event);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 11:12
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void dessiner(SDL_Renderer *renderer, etatJeu *jeu);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 11:12
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+SDL_Texture *loadTexture(const char *file, SDL_Renderer *ren);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 11:12
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y);
 
 #endif // __AFFICHAGESDL_H__
