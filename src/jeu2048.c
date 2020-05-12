@@ -25,6 +25,7 @@ int finPartie(etatJeu *jeu)
             }
             if ((retour == 1) && (jeu->plateau->tab[x][y] == 0))
             {
+                printf("Perdu !\n\r");
                 retour = 0;
             }
         }
@@ -33,11 +34,12 @@ int finPartie(etatJeu *jeu)
     return (retour);
 }
 
-void ajouteCase(etatJeu *jeu)
+Bool ajouteCase(etatJeu *jeu)
 {
     tabCoord *tCoord = (tabCoord *)malloc(sizeof(tabCoord));
     tCoord->lCoord = (coord *)malloc(sizeof(coord));
     tCoord->taille = 0;
+    Bool retour = False;
     coord coordActu;
     int int_y;
     int int_x;
@@ -55,8 +57,14 @@ void ajouteCase(etatJeu *jeu)
             }
         }
     }
-    coord Case = tCoord->lCoord[rand() % tCoord->taille];
-    jeu->plateau->tab[Case.y][Case.x] = ((rand() % 2) + 1) * 2;
+    if (tCoord->taille)
+    {
+        coord Case = tCoord->lCoord[rand() % tCoord->taille];
+        jeu->plateau->tab[Case.y][Case.x] = ((rand() % 2) + 1) * 2;
+        retour = True;
+    }
+
     free(tCoord->lCoord);
     free(tCoord);
+    return retour;
 }

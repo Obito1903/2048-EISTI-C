@@ -129,7 +129,7 @@ void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
 
     if (deplacement)
     {
-        ajouteCase(jeu);
+        jeu->jeuActif = ajouteCase(jeu);
         jeu->nbCoups++;
     }
 }

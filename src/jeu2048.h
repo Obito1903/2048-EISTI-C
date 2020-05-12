@@ -92,7 +92,7 @@ int finPartie(etatJeu *jeu);
  *  @param[in,out] jeu : pointeur vers le jeu
  *
  */
-void ajouteCase(etatJeu *jeu);
+Bool ajouteCase(etatJeu *jeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
