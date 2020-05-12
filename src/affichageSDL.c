@@ -32,13 +32,14 @@ void mainAffichage(etatJeu *jeu)
         SDL_Quit();
         exit(EXIT_FAILURE);
     }
-
+    tabTextures *tabTex = chargeTextures(ren);
     SDL_Event event;
     jeu->jeuActif = True;
     while (jeu->jeuActif)
     {
         gestionEvenement(jeu, &event);
-        dessiner(ren, jeu);
+        dessiner(ren, tabTex, jeu);
+        SDL_RenderPresent(ren);
         SDL_Delay(16);
     }
     freeJeu(jeu);
@@ -59,14 +60,22 @@ SDL_Texture *loadTexture(const char *file, SDL_Renderer *ren)
         //Make sure converting went ok too
         if (texture == NULL)
         {
-            logSDLError(stdout, "CreateTextureFromSurface");
+            fprintf(stdout, "CreateTextureFromSurface");
         }
     }
     else
     {
-        logSDLError(stdout, "LoadBMP");
+        fprintf(stdout, "LoadBMP");
     }
     return texture;
+}
+
+tabTextures *chargeTextures(SDL_Renderer *ren)
+{
+    tabTextures *tabTex = (tabTextures *)malloc(sizeof(tabTextures)); // Variable de retour
+    tabTex->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *) * 1);
+    tabTex->tabTex[0] = loadTexture("./src/assets/image1.bmp", ren);
+    return (tabTex);
 }
 
 void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y)
@@ -80,6 +89,29 @@ void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y)
     SDL_RenderCopy(ren, tex, NULL, &dst);
 }
 
+void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
+{
+    switch (touche)
+    {
+    case SDLK_ESCAPE:
+        jeu->jeuActif = False;
+        break;
+    case SDLK_UP:
+        break;
+
+    case SDLK_DOWN:
+        break;
+
+    case SDLK_LEFT:
+        break;
+
+    case SDLK_RIGHT:
+        break;
+    default:
+        break;
+    }
+}
+
 void gestionEvenement(etatJeu *jeu, SDL_Event *event)
 {
 
@@ -90,14 +122,18 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event)
         case SDL_QUIT:
             jeu->jeuActif = False;
             break;
+        case SDL_KEYDOWN:
+            gestionTouche(jeu, event->key.keysym.sym);
+            break;
         default:
             break;
         }
     }
 }
 
-void dessiner(SDL_Renderer *renderer, etatJeu *jeu)
+void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
 {
+    /*
     SDL_Surface *cube2 = NULL;
     SDL_Surface *cube4 = NULL;
     SDL_Surface *cube8 = NULL;
@@ -110,17 +146,21 @@ void dessiner(SDL_Renderer *renderer, etatJeu *jeu)
     SDL_Surface *cube1024 = NULL;
     SDL_Surface *cube2048 = NULL;
 
-    //cube2 = IMG_Load("image cube 2");
-    //cube4 = IMG_Load("image cube 4");
-    //cube8 = IMG_Load("image cube 8");
-    //cube16 = IMG_Load("image cube 16");
-    //cube32 = IMG_Load("image cube 32");
-    //cube64 = IMG_Load("image cube 64");
-    //cube128 = IMG_Load("image cube 128");
-    //cube256 = IMG_Load("image cube 256");
-    //cube512 = IMG_Load("image cube 512");
-    //cube1024 = IMG_Load("image cube 1024");
-    //cube2048 = IMG_Load("image cube 2048");
+    cube2 = IMG_Load("image cube 2");
+    cube4 = IMG_Load("image cube 4");
+    cube8 = IMG_Load("image cube 8");
+    cube16 = IMG_Load("image cube 16");
+    cube32 = IMG_Load("image cube 32");
+    cube64 = IMG_Load("image cube 64");
+    cube128 = IMG_Load("image cube 128");
+    cube256 = IMG_Load("image cube 256");
+    cube512 = IMG_Load("image cube 512");
+    cube1024 = IMG_Load("image cube 1024");
+    cube2048 = IMG_Load("image cube 2048");
 
-    // creer une fonction jouer pour blit les surfaces
+    creer une fonction jouer pour blit les surfaces
+    */
+
+    renderTexture(tabTex->tabTex[0], renderer, 10, 10);
+    renderTexture(tabTex->tabTex[0], renderer, 200, 10);
 }
