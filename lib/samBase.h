@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <unistd.h>
 
 typedef unsigned char uint8;
 typedef unsigned int uint;
