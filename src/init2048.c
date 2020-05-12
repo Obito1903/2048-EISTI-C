@@ -64,7 +64,12 @@ void savJeu(etatJeu *jeu)
 {
     int int_y;
     int int_x;
+#if defined(_WIN32)
+    mkdir("./Savs");
+#else
     mkdir("./Savs", 0700);
+
+#endif
     FILE *fichierSauv = fopen("./Savs/sav.bin", "wb");
     fwrite(&jeu->plateau->taille, sizeof(int), 1, fichierSauv);
     fwrite(&jeu->nbCoups, sizeof(uint), 1, fichierSauv);

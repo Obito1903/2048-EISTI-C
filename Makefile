@@ -26,6 +26,9 @@ init2048.o: src/init2048.c
 affichage.o: src/affichage.c
 	$(CC) $(FLAGS) $(IFLAGS) src/affichage.c
 
+affichageSDL.o: src/affichageSDL.c
+	$(CC) $(FLAGS) $(IFLAGS) src/affichageSDL.c
+
 deplacement.o: src/deplacement.c
 	$(CC) $(FLAGS) $(IFLAGS) src/deplacement.c
 

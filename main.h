@@ -15,8 +15,8 @@
 #define __MAIN_H__
 
 #include <time.h>
-#include "src/jeuBase.h"
-#include "src/jeu2048.h"
+#include <unistd.h>
+#include "src/affichageSDL.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

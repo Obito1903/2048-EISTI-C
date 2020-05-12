@@ -14,6 +14,10 @@
 */
 #define __JEU2048_H__
 
+#include "jeuBase.h"
+#include "deplacement.h"
+#include "init2048.h"
+
 /**
  * @struct coord
  * Stock des coordonées 2D
@@ -37,11 +41,7 @@ typedef struct
     /*! taille du tableau */
     int taille;
 } tabCoord;
-
-#include "jeuBase.h"
-#include "deplacement.h"
-#include "init2048.h"
-#include "affichage.h"
+//#include "affichage.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

@@ -34,14 +34,14 @@ void traitementArgs(int argc, char *argv[])
     {
         jeu = initJeu(4);
     }
-
-    executeJeu(jeu);
+    mainAffichage();
+    //executeJeu(jeu);
 }
 
 int main(int argc, char *argv[])
 {
 
-    srandom(time(NULL));
+    srand(time(NULL));
     traitementArgs(argc, argv);
 
     return (0);
