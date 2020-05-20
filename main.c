@@ -25,7 +25,6 @@ void traitementArgs(int argc, char *argv[])
             }
             if (!strcmp(argv[int_arg], "-l"))
             {
-
                 jeu = chargeJeu(argv[int_arg + 1]);
             }
         }
