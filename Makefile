@@ -6,10 +6,14 @@ CC	 = gcc
 SDLFLAGS=`sdl2-config --cflags --libs`
 FLAGS	 = -g -c -Wall -Wextra -pedantic
 LFLAGS	 = -Llib -lm -lSDL2_ttf
+LFLAGSWIN	 = -Llib -lmingw32 -lSDL2main -lSDL2 -lm
 IFLAGS	 = -Iinclude
 
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS) $(SDLFLAGS)
+
+win: $(OBJS)
+	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGSWIN)
 
 main.o: main.c
 	$(CC) $(FLAGS) $(IFLAGS) main.c
