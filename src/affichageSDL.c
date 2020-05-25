@@ -9,11 +9,47 @@
 
 #include "affichageSDL.h"
 
+TTF_Font *findFont()
+{
+    TTF_Font *font = TTF_OpenFont("./src/consola.ttf", FONTSIZE);
+    if (font == NULL)
+    {
+        TTF_Font *font = TTF_OpenFont("./bin/src/consola.ttf", FONTSIZE);
+        if (font == NULL)
+        {
+            TTF_Font *font = TTF_OpenFont("./consola.ttf", FONTSIZE);
+            if (font == NULL)
+            {
+                printf("TTF_OpenFont Error: %s \n", TTF_GetError());
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+    return font;
+}
+
+void frameControl(double tmp)
+{
+    if (tmp < 0.016)
+    {
+        SDL_Delay(16 - tmp);
+    }
+    else
+    {
+        printf("jeu trop lent (%lf)\n", tmp);
+    }
+}
+
 void mainAffichage(etatJeu *jeu)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
         printf("SDL_Init Error: %s \n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    if (TTF_Init() == -1)
+    {
+        printf("TTF_Init Error: %s \n", TTF_GetError());
         exit(EXIT_FAILURE);
     }
     SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, FENETRE_L, FENETRE_H, SDL_WINDOW_SHOWN);
@@ -32,74 +68,179 @@ void mainAffichage(etatJeu *jeu)
         SDL_Quit();
         exit(EXIT_FAILURE);
     }
-    tabTextures *tabTex = chargeTextures(ren);
     SDL_Event event;
     jeu->jeuActif = True;
+
+    TTF_Font *font = findFont();
+
+    clock_t start, end;
+    double cpu_time_used;
+
+    tabTextures tabTile;
+    tabTile.tabTex = NULL;
+    tabTile.taille = 0;
+
     while (jeu->jeuActif)
     {
+        start = clock();
         SDL_RenderClear(ren);
         gestionEvenement(jeu, &event);
-        dessiner(ren, tabTex, jeu);
+        dessiner(ren, &tabTile, jeu, font);
         SDL_RenderPresent(ren);
-        SDL_Delay(16);
+        end = clock();
+        cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+        frameControl(cpu_time_used);
     }
     freeJeu(jeu);
+    TTF_CloseFont(font);
+    TTF_Quit();
     SDL_Quit();
 }
 
 SDL_Texture *loadTexture(const char *file, SDL_Renderer *ren)
 {
-    //Initialize to nullptr to avoid dangling pointer issues
     SDL_Texture *texture = NULL;
-    //Load the image
+    //Charge l'image
     SDL_Surface *loadedImage = SDL_LoadBMP(file);
-    //If the loading went ok, convert to texture and return the texture
     if (loadedImage != NULL)
     {
         texture = SDL_CreateTextureFromSurface(ren, loadedImage);
         SDL_FreeSurface(loadedImage);
-        //Make sure converting went ok too
         if (texture == NULL)
         {
-            fprintf(stdout, "CreateTextureFromSurface");
+            fprintf(stdout, "Erreur :CreateTextureFromSurface\n");
         }
     }
     else
     {
-        fprintf(stdout, "LoadBMP");
+        fprintf(stdout, "Erreur : Chargement BMP\n");
     }
     return texture;
 }
 
-tabTextures *chargeTextures(SDL_Renderer *ren)
+SDL_Color setTileColor(int tileValue)
 {
-    tabTextures *tabTex = (tabTextures *)malloc(sizeof(tabTextures)); // Variable de retour
-    tabTex->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *) * 11);
-    tabTex->tabTex[0] = loadTexture("./src/assets/2.bmp", ren);
-    tabTex->tabTex[1] = loadTexture("./src/assets/4.bmp", ren);
-    tabTex->tabTex[2] = loadTexture("./src/assets/8.bmp", ren);
-    tabTex->tabTex[3] = loadTexture("./src/assets/16.bmp", ren);
-    tabTex->tabTex[4] = loadTexture("./src/assets/32.bmp", ren);
-    tabTex->tabTex[5] = loadTexture("./src/assets/64.bmp", ren);
-    tabTex->tabTex[6] = loadTexture("./src/assets/128.bmp", ren);
-    tabTex->tabTex[7] = loadTexture("./src/assets/256.bmp", ren);
-    tabTex->tabTex[8] = loadTexture("./src/assets/512.bmp", ren);
-    tabTex->tabTex[9] = loadTexture("./src/assets/1024.bmp", ren);
-    tabTex->tabTex[10] = loadTexture("./src/assets/2048.bmp", ren);
+    SDL_Color couleur = {0, 0, 0, 255};
+    if (tileValue <= 8)
+    {
+        couleur.r = 252;
+        couleur.g = 88;
+        couleur.b = 76;
+    }
+    else if (tileValue <= 64)
+    {
+        couleur.r = 252;
+        couleur.g = 155;
+        couleur.b = 76;
+    }
+    else if (tileValue <= 512)
+    {
+        couleur.r = 208;
+        couleur.g = 76;
+        couleur.b = 252;
+    }
+    else if (tileValue <= 2048)
+    {
+        couleur.r = 74;
+        couleur.g = 180;
+        couleur.b = 255;
+    }
+    else
+    {
+        couleur.r = 165;
+        couleur.g = 191;
+        couleur.b = 209;
+    }
+    return couleur;
+}
 
-    return (tabTex);
+tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font *font, int taille, int tileValue)
+{
+    SDL_Rect dst = {0, 0, 0, 0};
+    int reduc = 0;
+    char str[30];
+    if (tabTile->tabTex == NULL)
+    {
+        tabTile->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *));
+        tabTile->taille = 1;
+        tileValue = 2;
+    }
+    else
+    {
+        tabTile->tabTex = (SDL_Texture **)realloc(tabTile->tabTex, sizeof(SDL_Texture *) * (tabTile->taille + 1));
+        tabTile->taille++;
+    }
+
+    //Crée le texture du texte
+    sprintf(str, "%d", tileValue);
+    printf("%d\n", tileValue);
+    SDL_Rect r = {0, 0, taille, taille};
+    SDL_Color color = {255, 255, 255, 255};
+    SDL_Surface *surface = TTF_RenderText_Blended(font, str, color);
+    SDL_Texture *texNumber = SDL_CreateTextureFromSurface(ren, surface);
+
+    //Crée la texture de support
+    SDL_Texture *texTarget = SDL_CreateTexture(ren, SDL_PIXELFORMAT_UNKNOWN,
+                                               SDL_TEXTUREACCESS_TARGET, taille, taille);
+    SDL_Texture *texBackground = loadTexture("./src/assets/template.bmp", ren);
+    SDL_Color couleur = setTileColor(tileValue);
+    SDL_SetTextureColorMod(texBackground, couleur.r, couleur.g, couleur.b);
+
+    //Reduit et place le au centre le nombre
+    SDL_QueryTexture(texNumber, NULL, NULL, &dst.w, &dst.h);
+    reduc = (dst.w / taille) + 1;
+    dst.h = dst.h / reduc;
+    dst.w = dst.w / reduc;
+    dst.x = (r.w - dst.w) / 2;
+    dst.y = (r.h - dst.h) / 2;
+
+    //Fusionne le nombre a l'arriere plan
+    SDL_SetRenderTarget(ren, texTarget);
+    SDL_RenderClear(ren);
+    SDL_RenderCopy(ren, texBackground, NULL, &r);
+    SDL_RenderCopy(ren, texNumber, NULL, &dst);
+    SDL_SetRenderTarget(ren, NULL);
+
+    //Sauvegarde la texture
+    tabTile->tabTex[tabTile->taille - 1] = texTarget;
+    SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+
+    SDL_DestroyTexture(texNumber);
+    SDL_DestroyTexture(texBackground);
+    SDL_FreeSurface(surface);
+    return tabTile;
+}
+
+void renderTxt(SDL_Renderer *ren, const char *str, TTF_Font *font, int size, int x, int y)
+{
+    SDL_Rect dst;
+    int reduc = 0;
+    dst.x = x;
+    dst.y = y;
+
+    SDL_Color color = {255, 255, 255, 255};
+    SDL_Surface *surface = TTF_RenderText_Blended(font, str, color);
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(ren, surface);
+    SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
+    reduc = (dst.h / size);
+    dst.h = dst.h / reduc;
+    dst.w = dst.w / reduc;
+    SDL_RenderCopy(ren, texture, NULL, &dst);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
 }
 
 void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w)
 {
-    //Setup the destination rectangle to be at the position we want
     SDL_Rect dst;
     dst.x = x;
     dst.y = y;
-    //Query the texture to get its width and height to use
     SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
-    dst.w = w;
-    dst.h = h;
+    if (h != 0 && w != 0)
+    {
+        dst.w = w;
+        dst.h = h;
+    }
     SDL_RenderCopy(ren, tex, NULL, &dst);
 }
 
@@ -153,12 +294,24 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event)
     }
 }
 
-void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
+void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font)
 {
-    dessinePlateau(renderer, tabTex, jeu);
+    dessinePlateau(renderer, tabTex, jeu, font);
 }
 
-void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
+int calcLongeurUNb(int nb)
+{
+    int taille = 0;
+
+    while (nb > 0)
+    {
+        taille++;
+        nb = nb / 10;
+    }
+    return taille;
+}
+
+void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font)
 {
     int tailleCasePx = FENETRE_H / (jeu->plateau->taille + 2);
     int decallageVert = tailleCasePx - (4 * (jeu->plateau->taille - 1));
@@ -170,6 +323,10 @@ void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu)
         {
             if (jeu->plateau->tab[int_y][int_x] != 0)
             {
+                if (tabTex->tabTex == NULL || (tabTex->taille < (int)(log2(jeu->plateau->tab[int_y][int_x]))))
+                {
+                    tabTex = createTileTexture(renderer, tabTex, font, tailleCasePx, jeu->plateau->tab[int_y][int_x]);
+                }
                 renderTexture(tabTex->tabTex[(int)(log2(jeu->plateau->tab[int_y][int_x])) - 1], renderer, (int_x * (tailleCasePx + 4)) + decallageVert, (int_y * (tailleCasePx + 4)) + decallageVert, tailleCasePx, tailleCasePx);
             }
         }

@@ -16,6 +16,8 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL_ttf.h>
+#include <time.h>
 
 #include <math.h>
 #include "jeu2048.h"
@@ -28,6 +30,7 @@ typedef struct
 
 #define FENETRE_H 480
 #define FENETRE_L 640
+#define FONTSIZE 200
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -76,6 +79,18 @@ tabTextures *chargeTextures(SDL_Renderer *ren);
  *  @param[in]
  *
  */
+void renderTxt(SDL_Renderer *ren, const char *str, TTF_Font *font, int size, int x, int y);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 11:12
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
 void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w);
 
 /**
@@ -112,7 +127,7 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event);
  *  @param[in]
  *
  */
-void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu);
+void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -124,6 +139,6 @@ void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu);
  *  @param[in]
  *
  */
-void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu);
+void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font);
 
 #endif // __AFFICHAGESDL_H__

@@ -1,6 +1,5 @@
 Docs/Doxygen/*
 projet
-bin/src
 *.dll
 *.exe
 Savs

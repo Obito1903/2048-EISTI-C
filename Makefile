@@ -1,11 +1,11 @@
 OBJS	= main.o samIO.o samBase.o init2048.o affichageSDL.o deplacement.o jeu2048.o
 SOURCE	= main.c lib/samIO.c lib/samBase.c src/init2048.c src/affichageSDL.c src/deplacement.c src/jeu2048.c
 HEADER	= main.h lib/samIO.h lib/samBase.h src/init2048.h src/affichageSDL.h src/deplacement.h src/jeu2048.h
-OUT	= projet
+OUT	= bin/projet
 CC	 = gcc
 SDLFLAGS=`sdl2-config --cflags --libs`
 FLAGS	 = -g -c -Wall -Wextra -pedantic
-LFLAGS	 = -Llib -lm
+LFLAGS	 = -Llib -lm -lSDL2_ttf
 IFLAGS	 = -Iinclude
 
 all: $(OBJS)
