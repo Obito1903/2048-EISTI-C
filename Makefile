@@ -1,6 +1,6 @@
-OBJS	= main.o samIO.o samBase.o init2048.o affichageSDL.o deplacement.o jeu2048.o
-SOURCE	= main.c lib/samIO.c lib/samBase.c src/init2048.c src/affichageSDL.c src/deplacement.c src/jeu2048.c
-HEADER	= main.h lib/samIO.h lib/samBase.h src/init2048.h src/affichageSDL.h src/deplacement.h src/jeu2048.h
+OBJS	= main.o samIO.o samBase.o init2048.o affichageSDL.o textureManager.o deplacement.o jeu2048.o
+SOURCE	= main.c lib/samIO.c lib/samBase.c src/init2048.c src/affichage/affichageSDL.c src/affichage/textureManager.c src/deplacement.c src/jeu2048.c
+HEADER	= main.h lib/samIO.h lib/samBase.h src/init2048.h src/affichage/affichageSDL.h src/affichage/textureManager.h src/deplacement.h src/jeu2048.h
 OUT	= bin/projet
 CC	 = gcc
 SDLFLAGS=`sdl2-config --cflags --libs`
@@ -27,8 +27,11 @@ samBase.o: lib/samBase.c
 init2048.o: src/init2048.c
 	$(CC) $(FLAGS) $(IFLAGS) src/init2048.c
 
-affichageSDL.o: src/affichageSDL.c
-	$(CC) $(FLAGS) $(IFLAGS) src/affichageSDL.c
+affichageSDL.o: src/affichage/affichageSDL.c
+	$(CC) $(FLAGS) $(IFLAGS) src/affichage/affichageSDL.c
+
+textureManager.o: src/affichage/textureManager.c
+	$(CC) $(FLAGS) $(IFLAGS) src/affichage/textureManager.c
 
 deplacement.o: src/deplacement.c
 	$(CC) $(FLAGS) $(IFLAGS) src/deplacement.c

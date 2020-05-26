@@ -14,9 +14,9 @@
 */
 #define __MAIN_H__
 
+#include "src/affichage/affichageSDL.h"
 #include <time.h>
 #include <unistd.h>
-#include "src/affichageSDL.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
