@@ -9,9 +9,9 @@
 
 #ifndef __AFFICHAGESDL_H__
 /**
-*  @def __AFFICHAGESDL_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __AFFICHAGESDL_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __AFFICHAGESDL_H__
 
 #include <SDL2/SDL_video.h>
@@ -21,8 +21,8 @@
 #include "../jeu2048.h"
 #include "textureManager.h"
 
-#define FENETRE_H 480
-#define FENETRE_L 640
+#define FENETRE_H 720
+#define FENETRE_L 1280
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -119,7 +119,7 @@ void gestionEvenement(etatJeu *jeu, SDL_Event *event);
  *  @param[in]
  *
  */
-void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font);
+void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -131,6 +131,6 @@ void dessiner(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Fon
  *  @param[in]
  *
  */
-void dessinePlateau(SDL_Renderer *renderer, tabTextures *tabTex, etatJeu *jeu, TTF_Font *font);
+void dessinePlateau(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
 
 #endif // __AFFICHAGESDL_H__

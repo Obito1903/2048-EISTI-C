@@ -17,6 +17,7 @@
 #define FONTSIZE 200
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
 typedef struct
@@ -24,6 +25,30 @@ typedef struct
     SDL_Texture **tabTex;
     int taille;
 } tabTextures;
+
+/**
+ * @struct TextureBank
+ *
+ */
+typedef struct
+{
+    /*!  */
+    tabTextures **bank;
+    int taille;
+} TextureBank;
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 03 Jun 2020 13:26
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *  @return
+ *
+ */
+TextureBank *addTextureBank(TextureBank *texBank);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -75,7 +100,7 @@ SDL_Color setTileColor(int tileValue);
  *  @return
  *
  */
-tabTextures *allocTileTexture(tabTextures *tabTile, int *tileValue);
+tabTextures *allocNewTexture(tabTextures *tabTile, int *tileValue);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
