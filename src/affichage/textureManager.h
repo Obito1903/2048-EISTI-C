@@ -9,21 +9,22 @@
 
 #ifndef __TEXTUREMANAGER_H__
 /**
-*  @def __TEXTUREMANAGER_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __TEXTUREMANAGER_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __TEXTUREMANAGER_H__
 
 #define FONTSIZE 200
 
+#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
 typedef struct
 {
-    SDL_Texture **tabTex;
-    int taille;
+	SDL_Texture **tabTex;
+	int			  taille;
 } tabTextures;
 
 /**
@@ -32,9 +33,9 @@ typedef struct
  */
 typedef struct
 {
-    /*!  */
-    tabTextures **bank;
-    int taille;
+	/*!  */
+	tabTextures **bank;
+	int			  taille;
 } TextureBank;
 
 /**
@@ -113,6 +114,7 @@ tabTextures *allocNewTexture(tabTextures *tabTile, int *tileValue);
  *  @return
  *
  */
-tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font *font, int taille, int tileValue);
+tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font *font, int taille,
+							   int tileValue);
 
 #endif // __TEXTUREMANAGER_H__
