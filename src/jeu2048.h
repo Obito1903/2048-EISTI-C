@@ -9,9 +9,9 @@
 
 #ifndef __JEU2048_H__
 /**
-*  @def __JEU2048_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __JEU2048_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __JEU2048_H__
 
 #include "jeuBase.h"
@@ -24,10 +24,10 @@
  */
 typedef struct
 {
-    /*! Coord x */
-    int x;
-    /*! Coord y */
-    int y;
+	/*! Coord x */
+	int x;
+	/*! Coord y */
+	int y;
 } coord;
 
 /**
@@ -36,10 +36,10 @@ typedef struct
  */
 typedef struct
 {
-    /*! tableau de coord */
-    coord *lCoord;
-    /*! taille du tableau */
-    int taille;
+	/*! tableau de coord */
+	coord *lCoord;
+	/*! taille du tableau */
+	int taille;
 } tabCoord;
 //#include "affichage.h"
 
@@ -92,7 +92,7 @@ int finPartie(etatJeu *jeu);
  *  @param[in,out] jeu : pointeur vers le jeu
  *
  */
-Bool ajouteCase(etatJeu *jeu);
+uint ajouteCase(etatJeu *jeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

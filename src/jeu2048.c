@@ -30,12 +30,12 @@ int finPartie(etatJeu *jeu)
 	return (retour);
 }
 
-Bool ajouteCase(etatJeu *jeu)
+uint ajouteCase(etatJeu *jeu)
 {
 	tabCoord *tCoord = (tabCoord *)malloc(sizeof(tabCoord));
 	tCoord->lCoord	 = (coord *)malloc(sizeof(coord));
 	tCoord->taille	 = 0;
-	Bool  retour	 = False;
+	uint  retour	 = False;
 	coord coordActu;
 	int	  int_y;
 	int	  int_x;

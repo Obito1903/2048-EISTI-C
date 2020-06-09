@@ -130,9 +130,13 @@ tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font
 	SDL_Color	 couleur	   = setTileColor(tileValue);
 	SDL_SetTextureColorMod(texBackground, couleur.r, couleur.g, couleur.b);
 
-	// Reduit et place le au centre le nombre
+	// Reduit et place au centre le nombre
 	SDL_QueryTexture(texNumber, NULL, NULL, &dst.w, &dst.h);
-	reduc = (dst.w / taille) + 1;
+	if (dst.h >= dst.w) {
+		reduc = (dst.h / taille) + 1;
+	} else {
+		reduc = (dst.w / taille) + 1;
+	}
 	dst.h = dst.h / reduc;
 	dst.w = dst.w / reduc;
 	dst.x = (r.w - dst.w) / 2;

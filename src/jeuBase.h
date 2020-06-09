@@ -9,9 +9,9 @@
 
 #ifndef __JEUBASE_H__
 /**
-*  @def __JEUBASE_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __JEUBASE_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __JEUBASE_H__
 
 #include "../lib/samBase.h"
@@ -24,10 +24,10 @@
  */
 typedef struct
 {
-    /*! Tableau a deux dimension d'entier non signé */
-    uint **tab;
-    /*! taille du plateau */
-    int taille;
+	/*! Tableau a deux dimension d'entier non signé */
+	uint **tab;
+	/*! taille du plateau */
+	int taille;
 } plateau;
 
 /**
@@ -36,12 +36,12 @@ typedef struct
  */
 typedef struct
 {
-    /*! pointeur vers plateau  */
-    plateau *plateau;
-    /*! compteur du nombre de coups */
-    uint nbCoups;
-    /*! Si le jeu est en cours ou non */
-    Bool jeuActif;
+	/*! pointeur vers plateau  */
+	plateau *plateau;
+	/*! compteur du nombre de coups */
+	uint nbCoups;
+	/*! Si le jeu est en cours ou non */
+	uint etatJeu;
 } etatJeu;
 
 #endif // __JEUBASE_H__

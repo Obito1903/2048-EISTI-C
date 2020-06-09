@@ -9,114 +9,98 @@
 
 #include "deplacement.h"
 
-Bool DirectionNord(etatJeu *jeu)
+uint DirectionNord(etatJeu *jeu)
 {
-    int int_x;
-    int int_y;
-    for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
-    {
-        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
-        {
-            if (jeu->plateau->tab[int_y][int_x] != 0)
-            {
-                int y = int_y;
-                while ((y - 1 >= 0) && (jeu->plateau->tab[y - 1][int_x] == 0))
-                {
-                    jeu->plateau->tab[y - 1][int_x] = jeu->plateau->tab[y][int_x];
-                    jeu->plateau->tab[y][int_x] = 0;
-                    y--;
-                }
-                if ((y - 1 >= 0) && (jeu->plateau->tab[y - 1][int_x] == jeu->plateau->tab[y][int_x]))
-                {
-                    jeu->plateau->tab[y - 1][int_x] = jeu->plateau->tab[y - 1][int_x] * 2;
-                    jeu->plateau->tab[y][int_x] = 0;
-                }
-            }
-        }
-    }
-    return True;
+	int int_x;
+	int int_y;
+	for (int_y = 0; int_y < jeu->plateau->taille; int_y++) {
+		for (int_x = 0; int_x < jeu->plateau->taille; int_x++) {
+			if (jeu->plateau->tab[int_y][int_x] != 0) {
+				int y = int_y;
+				while ((y - 1 >= 0) && (jeu->plateau->tab[y - 1][int_x] == 0)) {
+					jeu->plateau->tab[y - 1][int_x] = jeu->plateau->tab[y][int_x];
+					jeu->plateau->tab[y][int_x]		= 0;
+					y--;
+				}
+				if ((y - 1 >= 0) &&
+					(jeu->plateau->tab[y - 1][int_x] == jeu->plateau->tab[y][int_x])) {
+					jeu->plateau->tab[y - 1][int_x] = jeu->plateau->tab[y - 1][int_x] * 2;
+					jeu->plateau->tab[y][int_x]		= 0;
+				}
+			}
+		}
+	}
+	return True;
 }
 
-Bool DirectionSud(etatJeu *jeu)
+uint DirectionSud(etatJeu *jeu)
 {
-    int int_x;
-    int int_y;
-    for (int_y = jeu->plateau->taille - 1; int_y >= 0; int_y--)
-    {
-        for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
-        {
-            if (jeu->plateau->tab[int_y][int_x] != 0)
-            {
-                int y = int_y;
-                while ((y + 1 < jeu->plateau->taille) && (jeu->plateau->tab[y + 1][int_x] == 0))
-                {
-                    jeu->plateau->tab[y + 1][int_x] = jeu->plateau->tab[y][int_x];
-                    jeu->plateau->tab[y][int_x] = 0;
-                    y++;
-                }
-                if ((y + 1 < jeu->plateau->taille) && (jeu->plateau->tab[y + 1][int_x] == jeu->plateau->tab[y][int_x]))
-                {
-                    jeu->plateau->tab[y + 1][int_x] = jeu->plateau->tab[y + 1][int_x] * 2;
-                    jeu->plateau->tab[y][int_x] = 0;
-                }
-            }
-        }
-    }
-    return True;
+	int int_x;
+	int int_y;
+	for (int_y = jeu->plateau->taille - 1; int_y >= 0; int_y--) {
+		for (int_x = 0; int_x < jeu->plateau->taille; int_x++) {
+			if (jeu->plateau->tab[int_y][int_x] != 0) {
+				int y = int_y;
+				while ((y + 1 < jeu->plateau->taille) && (jeu->plateau->tab[y + 1][int_x] == 0)) {
+					jeu->plateau->tab[y + 1][int_x] = jeu->plateau->tab[y][int_x];
+					jeu->plateau->tab[y][int_x]		= 0;
+					y++;
+				}
+				if ((y + 1 < jeu->plateau->taille) &&
+					(jeu->plateau->tab[y + 1][int_x] == jeu->plateau->tab[y][int_x])) {
+					jeu->plateau->tab[y + 1][int_x] = jeu->plateau->tab[y + 1][int_x] * 2;
+					jeu->plateau->tab[y][int_x]		= 0;
+				}
+			}
+		}
+	}
+	return True;
 }
 
-Bool DirectionEst(etatJeu *jeu)
+uint DirectionEst(etatJeu *jeu)
 {
-    int int_x;
-    int int_y;
-    for (int_x = jeu->plateau->taille - 1; int_x >= 0; int_x--)
-    {
-        for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
-        {
-            if (jeu->plateau->tab[int_y][int_x] != 0)
-            {
-                int x = int_x;
-                while ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == 0))
-                {
-                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x];
-                    jeu->plateau->tab[int_y][x] = 0;
-                    x++;
-                }
-                if ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == jeu->plateau->tab[int_y][x]))
-                {
-                    jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x + 1] * 2;
-                    jeu->plateau->tab[int_y][x] = 0;
-                }
-            }
-        }
-    }
-    return True;
+	int int_x;
+	int int_y;
+	for (int_x = jeu->plateau->taille - 1; int_x >= 0; int_x--) {
+		for (int_y = 0; int_y < jeu->plateau->taille; int_y++) {
+			if (jeu->plateau->tab[int_y][int_x] != 0) {
+				int x = int_x;
+				while ((x + 1 < jeu->plateau->taille) && (jeu->plateau->tab[int_y][x + 1] == 0)) {
+					jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x];
+					jeu->plateau->tab[int_y][x]		= 0;
+					x++;
+				}
+				if ((x + 1 < jeu->plateau->taille) &&
+					(jeu->plateau->tab[int_y][x + 1] == jeu->plateau->tab[int_y][x])) {
+					jeu->plateau->tab[int_y][x + 1] = jeu->plateau->tab[int_y][x + 1] * 2;
+					jeu->plateau->tab[int_y][x]		= 0;
+				}
+			}
+		}
+	}
+	return True;
 }
 
-Bool DirectionOuest(etatJeu *jeu)
+uint DirectionOuest(etatJeu *jeu)
 {
-    int int_x;
-    int int_y;
-    for (int_x = 0; int_x < jeu->plateau->taille; int_x++)
-    {
-        for (int_y = 0; int_y < jeu->plateau->taille; int_y++)
-        {
-            if (jeu->plateau->tab[int_y][int_x] != 0)
-            {
-                int x = int_x;
-                while ((x - 1 >= 0) && (jeu->plateau->tab[int_y][x - 1] == 0))
-                {
-                    jeu->plateau->tab[int_y][x - 1] = jeu->plateau->tab[int_y][x];
-                    jeu->plateau->tab[int_y][x] = 0;
-                    x--;
-                }
-                if ((x - 1 >= 0) && (jeu->plateau->tab[int_y][x - 1] == jeu->plateau->tab[int_y][x]))
-                {
-                    jeu->plateau->tab[int_y][x - 1] = jeu->plateau->tab[int_y][x - 1] * 2;
-                    jeu->plateau->tab[int_y][x] = 0;
-                }
-            }
-        }
-    }
-    return True;
+	int int_x;
+	int int_y;
+	for (int_x = 0; int_x < jeu->plateau->taille; int_x++) {
+		for (int_y = 0; int_y < jeu->plateau->taille; int_y++) {
+			if (jeu->plateau->tab[int_y][int_x] != 0) {
+				int x = int_x;
+				while ((x - 1 >= 0) && (jeu->plateau->tab[int_y][x - 1] == 0)) {
+					jeu->plateau->tab[int_y][x - 1] = jeu->plateau->tab[int_y][x];
+					jeu->plateau->tab[int_y][x]		= 0;
+					x--;
+				}
+				if ((x - 1 >= 0) &&
+					(jeu->plateau->tab[int_y][x - 1] == jeu->plateau->tab[int_y][x])) {
+					jeu->plateau->tab[int_y][x - 1] = jeu->plateau->tab[int_y][x - 1] * 2;
+					jeu->plateau->tab[int_y][x]		= 0;
+				}
+			}
+		}
+	}
+	return True;
 }

@@ -50,7 +50,7 @@ void mainAffichage(etatJeu *jeu)
 		exit(EXIT_FAILURE);
 	}
 	SDL_Event event;
-	jeu->jeuActif = True;
+	jeu->etatJeu = True;
 
 	TTF_Font *font = findFont(FONTSIZE);
 
@@ -63,7 +63,7 @@ void mainAffichage(etatJeu *jeu)
 	TexBank->bank[1]			= allocNewTexture(TexBank->bank[1], NULL);
 	TexBank->bank[1]->tabTex[0] = loadTexture("./src/assets/template_background.png", ren);
 
-	while (jeu->jeuActif) {
+	while (jeu->etatJeu) {
 		start = clock();
 		SDL_RenderClear(ren);
 		gestionEvenement(jeu, &event);
@@ -79,101 +79,24 @@ void mainAffichage(etatJeu *jeu)
 	SDL_Quit();
 }
 
-void renderTxt(SDL_Renderer *ren, const char *str, TTF_Font *font, int size, int x, int y)
-{
-	SDL_Rect dst;
-	int		 reduc = 0;
-	dst.x		   = x;
-	dst.y		   = y;
-
-	SDL_Color	 color	 = {255, 255, 255, 255};
-	SDL_Surface *surface = TTF_RenderText_Blended(font, str, color);
-	SDL_Texture *texture = SDL_CreateTextureFromSurface(ren, surface);
-	SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
-	reduc = (dst.h / size);
-	dst.h = dst.h / reduc;
-	dst.w = dst.w / reduc;
-	SDL_RenderCopy(ren, texture, NULL, &dst);
-	SDL_FreeSurface(surface);
-	SDL_DestroyTexture(texture);
-}
-
-void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w)
-{
-	SDL_Rect dst;
-	dst.x = x;
-	dst.y = y;
-	SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
-	if (h != 0 && w != 0) {
-		dst.w = w;
-		dst.h = h;
-	}
-	SDL_RenderCopy(ren, tex, NULL, &dst);
-}
-
-void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
-{
-	Bool deplacement = False;
-	switch (touche) {
-		case SDLK_ESCAPE:
-			jeu->jeuActif = False;
-			break;
-		case SDLK_UP:
-			deplacement = DirectionNord(jeu);
-			break;
-		case SDLK_DOWN:
-			deplacement = DirectionSud(jeu);
-			break;
-		case SDLK_LEFT:
-			deplacement = DirectionOuest(jeu);
-			break;
-		case SDLK_RIGHT:
-			deplacement = DirectionEst(jeu);
-			break;
-		default:
-			break;
-	}
-
-	if (deplacement) {
-		jeu->jeuActif = ajouteCase(jeu);
-		jeu->nbCoups++;
-	}
-}
-
-void gestionEvenement(etatJeu *jeu, SDL_Event *event)
-{
-
-	while (SDL_PollEvent(event)) {
-		switch (event->type) {
-			case SDL_QUIT:
-				jeu->jeuActif = False;
-				break;
-			case SDL_KEYDOWN:
-				gestionTouche(jeu, event->key.keysym.sym);
-				break;
-			default:
-				break;
-		}
-	}
-}
-
 void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
 {
 	SDL_SetRenderDrawColor(renderer, 52, 52, 52, 255);
 
-	dessinePlateau(renderer, TexBank, jeu, font);
-}
-
-int calcLongeurUNb(int nb)
-{
-	int taille = 0;
-
-	while (nb > 0) {
-		taille++;
-		nb = nb / 10;
+	switch (jeu->etatJeu) {
+		case 1:
+			dessinePlateau(renderer, TexBank, jeu, font);
+			break;
+		case 2:
+			dessineMenu(renderer, TexBank, jeu, font);
+			break;
+		default:
+			break;
 	}
-	return taille;
 }
+
+void dessineMenu(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
+{}
 
 void dessinePlateau(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
 {

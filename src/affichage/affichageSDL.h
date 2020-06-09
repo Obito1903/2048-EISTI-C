@@ -18,8 +18,8 @@
 #include <math.h>
 #include <time.h>
 
-#include "../jeu2048.h"
-#include "textureManager.h"
+#include "renderSDL.h"
+#include "evenementSDL.h"
 
 #define FENETRE_H 720
 #define FENETRE_L 1280
@@ -46,80 +46,19 @@ void mainAffichage(etatJeu *jeu);
  *  @param[in]
  *
  */
-SDL_Texture *loadTexture(const char *file, SDL_Renderer *ren);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 11:47
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
-tabTextures *chargeTextures(SDL_Renderer *ren);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 11:12
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void renderTxt(SDL_Renderer *ren, const char *str, TTF_Font *font, int size, int x, int y);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 11:12
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 12:02
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void gestionTouche(etatJeu *jeu, SDL_Keycode touche);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 11:03
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void gestionEvenement(etatJeu *jeu, SDL_Event *event);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 11:12
- *
- *  @brief
- *
- *  @param[in]
- *
- */
 void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 12:29
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void dessineMenu(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

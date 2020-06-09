@@ -9,9 +9,9 @@
 
 #ifndef __DEPLACEMENT_H__
 /**
-*  @def __DEPLACEMENT_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __DEPLACEMENT_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __DEPLACEMENT_H__
 
 #include "jeuBase.h"
@@ -22,14 +22,14 @@
  */
 typedef enum
 {
-    /*! Direction Nord */
-    D_NORD = 0,
-    /*! Direction SUD */
-    D_SUD = 1,
-    /*! Direction EST */
-    D_EST = 2,
-    /*! Direction OUEST */
-    D_OUEST = 3
+	/*! Direction Nord */
+	D_NORD = 0,
+	/*! Direction SUD */
+	D_SUD = 1,
+	/*! Direction EST */
+	D_EST = 2,
+	/*! Direction OUEST */
+	D_OUEST = 3
 } direction;
 
 /**
@@ -42,7 +42,7 @@ typedef enum
  *  @param[in,out] jeu : pointeur vers le plateau
  *
  */
-Bool DirectionNord(etatJeu *jeu);
+uint DirectionNord(etatJeu *jeu);
 
 /**
  *  @author Hugo Mosser <hugomosser@eisti.eu>
@@ -55,7 +55,7 @@ Bool DirectionNord(etatJeu *jeu);
  *
  *
  */
-Bool DirectionSud(etatJeu *jeu);
+uint DirectionSud(etatJeu *jeu);
 
 /**
  *  @author Théo Paesa <theo.paesa@eisti.eu>
@@ -67,7 +67,7 @@ Bool DirectionSud(etatJeu *jeu);
  *  @param[in,out] jeu : pointeur vers le plateau
  *
  */
-Bool DirectionEst(etatJeu *jeu);
+uint DirectionEst(etatJeu *jeu);
 
 /**
  *  @author Hugo Mosser<mosserhugo@eisti.eu>
@@ -80,6 +80,6 @@ Bool DirectionEst(etatJeu *jeu);
  *
  *
  */
-Bool DirectionOuest(etatJeu *jeu);
+uint DirectionOuest(etatJeu *jeu);
 
 #endif // __DEPLACEMENT_H__
