@@ -40,3 +40,29 @@ void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int
 	}
 	SDL_RenderCopy(ren, tex, NULL, &dst);
 }
+
+void renderButtons(button *button, SDL_Renderer *ren, TTF_Font *font)
+{
+	SDL_Rect dst;
+	int		 reduc		 = 0;
+	dst.x				 = button->x;
+	dst.y				 = button->y;
+	SDL_Color	 color	 = {255, 255, 255, 255};
+	SDL_Surface *surface = TTF_RenderText_Blended(font, button->texte, color);
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(ren, surface);
+	SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
+	reduc = (dst.h / button->size);
+	dst.h = dst.h / reduc;
+	dst.w = dst.w / reduc;
+	// Dessine fond
+	SDL_SetRenderDrawColor(ren, 176, 176, 176, 255);
+	SDL_RenderFillRect(ren, &dst);
+	// Dessine texte
+	SDL_RenderCopy(ren, texture, NULL, &dst);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
+	SDL_SetRenderDrawColor(ren, 52, 52, 52, 255);
+
+	button->h = dst.h;
+	button->w = dst.w;
+}

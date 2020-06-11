@@ -9,6 +9,48 @@
 
 #include "evenementSDL.h"
 
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Thu 11 Jun 2020 15:29
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void execBouton(etatJeu *jeu, uint idBouton)
+{
+	switch (idBouton) {
+		case 0:
+			savJeu(jeu);
+			break;
+
+		default:
+			break;
+	}
+}
+
+void gestionEvenement(etatJeu *jeu, Buttons *buttons, SDL_Event *event)
+{
+
+	while (SDL_PollEvent(event)) {
+		switch (event->type) {
+			case SDL_QUIT:
+				jeu->etatJeu = False;
+				break;
+			case SDL_KEYDOWN:
+				gestionTouche(jeu, event->key.keysym.sym);
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				gestionCliqueSouris(jeu, buttons, &event->button);
+				break;
+			default:
+				break;
+		}
+	}
+}
+
 void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
 {
 	uint deplacement = False;
@@ -38,62 +80,15 @@ void gestionTouche(etatJeu *jeu, SDL_Keycode touche)
 	}
 }
 
-void gestionEvenement(etatJeu *jeu, SDL_Event *event)
+void gestionCliqueSouris(etatJeu *jeu, Buttons *buttons, SDL_MouseButtonEvent *event)
 {
-
-	while (SDL_PollEvent(event)) {
-		switch (event->type) {
-			case SDL_QUIT:
-				jeu->etatJeu = False;
-				break;
-			case SDL_KEYDOWN:
-				gestionTouche(jeu, event->key.keysym.sym);
-				break;
-			case SDL_MOUSEBUTTONDOWN:
-				gestionCliqueSouris(jeu, &event->button);
-				break;
-			default:
-				break;
+	uint	int_button;
+	button *bouton;
+	for (int_button = 0; int_button < buttons->nbButtons; int_button++) {
+		bouton = buttons->tabButton[int_button];
+		if (event->x > bouton->x && event->y > bouton->y && event->x < bouton->x + bouton->w &&
+			event->y < bouton->y + bouton->h) {
+			execBouton(jeu, int_button);
 		}
 	}
-}
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 09 Jun 2020 10:52
- *
- *  @brief
- *
- *  @param[in]
- *
- */
-void gestionCliqueSouris(jeu, SDL_MouseButtonEvent *event)
-{
-	switch (expression) {
-		case /* constant-expression */:
-			/* code */
-			break;
-
-		default:
-			break;
-	}
-}
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 09 Jun 2020 10:44
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
-Bool testMouseZone(param)
-{
-	Bool retour; // Variable de retour
-
-	return (retour);
 }

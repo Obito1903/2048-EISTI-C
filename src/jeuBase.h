@@ -41,7 +41,7 @@ typedef struct
 	/*! compteur du nombre de coups */
 	uint nbCoups;
 	/*! Si le jeu est en cours ou non */
-	uint etatJeu;
+	int etatJeu;
 } etatJeu;
 
 #endif // __JEUBASE_H__

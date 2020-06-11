@@ -60,6 +60,7 @@ void savJeu(etatJeu *jeu)
 {
 	int int_y;
 	int int_x;
+
 #if defined(_WIN32)
 	mkdir("./Savs");
 #else

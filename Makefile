@@ -1,6 +1,6 @@
-OBJS	= main.o samIO.o samBase.o init2048.o affichageSDL.o textureManager.o renderSDL.o evenementSDL.o deplacement.o jeu2048.o
-SOURCE	= main.c lib/samIO.c lib/samBase.c src/init2048.c src/affichage/affichageSDL.c src/affichage/textureManager.c src/affichage/renderSDL.c src/affichage/evenementSDL.c src/deplacement.c src/jeu2048.c
-HEADER	= main.h lib/samIO.h lib/samBase.h src/init2048.h src/affichage/affichageSDL.h src/affichage/textureManager.h src/affichage/renderSDL.h src/affichage/evenementSDL.h src/deplacement.h src/jeu2048.h
+OBJS	= main.o samIO.o samBase.o init2048.o affichageSDL.o textureManager.o renderSDL.o evenementSDL.o changementEtat.o deplacement.o jeu2048.o
+SOURCE	= main.c lib/samIO.c lib/samBase.c src/init2048.c src/affichage/affichageSDL.c src/affichage/textureManager.c src/affichage/renderSDL.c src/affichage/evenementSDL.c src/affichage/changementEtat.c src/deplacement.c src/jeu2048.c
+HEADER	= main.h lib/samIO.h lib/samBase.h src/init2048.h src/affichage/affichageSDL.h src/affichage/textureManager.h src/affichage/renderSDL.h src/affichage/evenementSDL.h src/affichage/changementEtat.h src/deplacement.h src/jeu2048.h
 OUT	= bin/projet
 CC	 = gcc
 SDLFLAGS=`sdl2-config --cflags --libs`
@@ -38,6 +38,9 @@ renderSDL.o: src/affichage/renderSDL.c
 
 evenementSDL.o: src/affichage/evenementSDL.c
 	$(CC) $(FLAGS) $(IFLAGS) src/affichage/evenementSDL.c
+
+changementEtat.o: src/affichage/changementEtat.c
+	$(CC) $(FLAGS) $(IFLAGS) src/affichage/changementEtat.c
 
 deplacement.o: src/deplacement.c
 	$(CC) $(FLAGS) $(IFLAGS) src/deplacement.c

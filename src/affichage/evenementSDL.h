@@ -19,6 +19,32 @@
 #include "../jeu2048.h"
 
 /**
+ * @struct button
+ *
+ */
+typedef struct
+{
+	/*!  */
+	int	  x;
+	int	  y;
+	int	  size;
+	int	  h;
+	int	  w;
+	char *texte;
+} button;
+
+/**
+ * @struct tabButton
+ *
+ */
+typedef struct
+{
+	/*!  */
+	button **tabButton;
+	uint	 nbButtons;
+} Buttons;
+
+/**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 12:02
@@ -40,6 +66,18 @@ void gestionTouche(etatJeu *jeu, SDL_Keycode touche);
  *  @param[in]
  *
  */
-void gestionEvenement(etatJeu *jeu, SDL_Event *event);
+void gestionEvenement(etatJeu *jeu, Buttons *buttons, SDL_Event *event);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 09 Jun 2020 10:52
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void gestionCliqueSouris(etatJeu *jeu, Buttons *buttons, SDL_MouseButtonEvent *event);
 
 #endif // __EVENEMENTSDL_H__

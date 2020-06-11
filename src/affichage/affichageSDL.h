@@ -19,7 +19,6 @@
 #include <time.h>
 
 #include "renderSDL.h"
-#include "evenementSDL.h"
 
 #define FENETRE_H 720
 #define FENETRE_L 1280
@@ -46,7 +45,20 @@ void mainAffichage(etatJeu *jeu);
  *  @param[in]
  *
  */
-void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
+void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
+			  Buttons *buttons);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Thu 11 Jun 2020 15:01
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void dessineBoutons(SDL_Renderer *renderer, TTF_Font *font, Buttons *buttons);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -58,7 +70,8 @@ void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Fo
  *  @param[in]
  *
  */
-void dessineMenu(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
+void dessineAccueil(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
+					Buttons *buttons);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

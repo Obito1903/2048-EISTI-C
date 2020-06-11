@@ -18,7 +18,17 @@ void frameControl(double tmp)
 	}
 }
 
-void mainAffichage(etatJeu *jeu)
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 10 Jun 2020 12:12
+ *
+ *  @brief
+ *
+ *  @param[in]
+ *
+ */
+void initSDL(void)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		printf("SDL_Init Error: %s \n", SDL_GetError());
@@ -32,6 +42,11 @@ void mainAffichage(etatJeu *jeu)
 		printf("IMG_Init Error: %s \n", IMG_GetError());
 		exit(EXIT_FAILURE);
 	}
+}
+
+void mainAffichage(etatJeu *jeu)
+{
+	initSDL();
 
 	SDL_Window *win =
 		SDL_CreateWindow("Hello World!", 100, 100, FENETRE_L, FENETRE_H, SDL_WINDOW_SHOWN);
@@ -49,25 +64,27 @@ void mainAffichage(etatJeu *jeu)
 		SDL_Quit();
 		exit(EXIT_FAILURE);
 	}
-	SDL_Event event;
-	jeu->etatJeu = True;
-
-	TTF_Font *font = findFont(FONTSIZE);
-
-	clock_t start, end;
-	double	cpu_time_used;
 
 	TextureBank *TexBank = addTextureBank(NULL);
 	TexBank				 = addTextureBank(TexBank);
 
-	TexBank->bank[1]			= allocNewTexture(TexBank->bank[1], NULL);
-	TexBank->bank[1]->tabTex[0] = loadTexture("./src/assets/template_background.png", ren);
+	SDL_Event event;
+	TTF_Font *font = findFont(FONTSIZE);
+
+	Buttons buttons;
+	buttons.tabButton = NULL;
+	buttons.nbButtons = 0;
+
+	chargeEtat(1, jeu, &buttons, TexBank, ren);
+
+	clock_t start, end;
+	double	cpu_time_used;
 
 	while (jeu->etatJeu) {
 		start = clock();
 		SDL_RenderClear(ren);
-		gestionEvenement(jeu, &event);
-		dessiner(ren, TexBank, jeu, font);
+		gestionEvenement(jeu, &buttons, &event);
+		dessiner(ren, TexBank, jeu, font, &buttons);
 		SDL_RenderPresent(ren);
 		end			  = clock();
 		cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
@@ -79,23 +96,33 @@ void mainAffichage(etatJeu *jeu)
 	SDL_Quit();
 }
 
-void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
+void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
+			  Buttons *buttons)
 {
 	SDL_SetRenderDrawColor(renderer, 52, 52, 52, 255);
-
 	switch (jeu->etatJeu) {
 		case 1:
 			dessinePlateau(renderer, TexBank, jeu, font);
+			dessineBoutons(renderer, font, buttons);
 			break;
 		case 2:
-			dessineMenu(renderer, TexBank, jeu, font);
+			dessineAccueil(renderer, TexBank, jeu, font, buttons);
 			break;
 		default:
 			break;
 	}
 }
 
-void dessineMenu(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
+void dessineBoutons(SDL_Renderer *renderer, TTF_Font *font, Buttons *buttons)
+{
+	uint int_boutons;
+	for (int_boutons = 0; int_boutons < buttons->nbButtons; int_boutons++) {
+		renderButtons(buttons->tabButton[int_boutons], renderer, font);
+	}
+}
+
+void dessineAccueil(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
+					Buttons *buttons)
 {}
 
 void dessinePlateau(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
