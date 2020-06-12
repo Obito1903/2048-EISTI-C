@@ -1,6 +1,7 @@
 Docs/Doxygen/*
 projet
 *.exe
+*.dll
 Savs
 Savs/*
 *.o
