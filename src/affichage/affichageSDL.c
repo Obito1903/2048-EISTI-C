@@ -42,7 +42,7 @@ jeu *initAffichage(etatJeu *EtatJeu)
 	initSDL();
 	Jeu->etatJeu = EtatJeu;
 	// Création de la fenêtre
-	Jeu->window = SDL_CreateWindow("Hello World!", 100, 100, EtatJeu->fenetreL, EtatJeu->fenetreH, SDL_WINDOW_SHOWN);
+	Jeu->window = SDL_CreateWindow("2048", 100, 100, EtatJeu->fenetreL, EtatJeu->fenetreH, SDL_WINDOW_SHOWN);
 	if (Jeu->window == NULL) {
 		printf("SDL_CreateWindow Error: %s \n", SDL_GetError());
 		SDL_Quit();
