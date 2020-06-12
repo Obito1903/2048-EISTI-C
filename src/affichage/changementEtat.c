@@ -9,16 +9,6 @@
 
 #include "changementEtat.h"
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 10 Jun 2020 12:41
- *
- *  @brief
- *
- *  @param[in]
- *
- */
 void ajouteButton(Buttons *buttons, uint x, uint y, uint size, char *texte)
 {
 	if (!buttons->tabButton) {
@@ -37,16 +27,6 @@ void ajouteButton(Buttons *buttons, uint x, uint y, uint size, char *texte)
 	buttons->tabButton[buttons->nbButtons - 1]->texte = texte;
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Fri 12 Jun 2020 14:24
- *
- *  @brief
- *
- *  @param[in]
- *
- */
 void freeBoutons(Buttons *Buttons)
 {
 	uint int_bouton;
@@ -58,41 +38,38 @@ void freeBoutons(Buttons *Buttons)
 	Buttons->tabButton = NULL;
 }
 
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Wed 10 Jun 2020 12:15
- *
- *  @brief
- *
- *  @param[in]
- *  @return
- *
- */
-void chargeEtat(int Etat, etatJeu *jeu, Buttons *Buttons)
+void chargeEtat(int Etat, jeu *Jeu)
 {
 	printf("Etat : %d", Etat);
-	freeBoutons(Buttons);
+	freeBoutons(Jeu->boutons);
 	switch (Etat) {
 		case VICTOIRE:
-			jeu->etatJeu = VICTOIRE;
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (3 * jeu->fenetreH) / 7, jeu->fenetreL / 30, "Victoire !");
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (4 * jeu->fenetreH) / 7, jeu->fenetreL / 30, "Continuer");
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (5 * jeu->fenetreH) / 7, jeu->fenetreL / 30, "Quitter");
+			Jeu->etatJeu->etatJeu = VICTOIRE;
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (3 * Jeu->etatJeu->fenetreH) / 7,
+						 Jeu->etatJeu->fenetreL / 30, "Victoire !");
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (4 * Jeu->etatJeu->fenetreH) / 7,
+						 Jeu->etatJeu->fenetreL / 30, "Continuer");
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (5 * Jeu->etatJeu->fenetreH) / 7,
+						 Jeu->etatJeu->fenetreL / 30, "Quitter");
 			break;
 		case JEU:
-			jeu->etatJeu = JEU;
-			ajouteButton(Buttons, ((5 * jeu->fenetreL) / 6) - (jeu->fenetreL / 13), jeu->fenetreH / 2, jeu->fenetreL / 25, "Sauvegarder");
+			Jeu->etatJeu->etatJeu = JEU;
+			ajouteButton(Jeu->boutons, ((5 * Jeu->etatJeu->fenetreL) / 6) - (Jeu->etatJeu->fenetreL / 13),
+						 Jeu->etatJeu->fenetreH / 2, Jeu->etatJeu->fenetreL / 25, "Sauvegarder");
 			break;
 		case PAUSE:
-			jeu->etatJeu = PAUSE;
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (2 * jeu->fenetreH) / 5, jeu->fenetreL / 25, "Sauvegarder");
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (3 * jeu->fenetreH) / 5, jeu->fenetreL / 25, "Quitter");
+			Jeu->etatJeu->etatJeu = PAUSE;
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (2 * Jeu->etatJeu->fenetreH) / 5,
+						 Jeu->etatJeu->fenetreL / 25, "Sauvegarder");
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (3 * Jeu->etatJeu->fenetreH) / 5,
+						 Jeu->etatJeu->fenetreL / 25, "Quitter");
 			break;
 		case PERDU:
-			jeu->etatJeu = PERDU;
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (3 * jeu->fenetreH) / 5, jeu->fenetreL / 25, "Quitter");
-			ajouteButton(Buttons, (jeu->fenetreL / 2), (2 * jeu->fenetreH) / 5, jeu->fenetreL / 25, "Perdu !");
+			Jeu->etatJeu->etatJeu = PERDU;
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (3 * Jeu->etatJeu->fenetreH) / 5,
+						 Jeu->etatJeu->fenetreL / 25, "Quitter");
+			ajouteButton(Jeu->boutons, (Jeu->etatJeu->fenetreL / 2), (2 * Jeu->etatJeu->fenetreH) / 5,
+						 Jeu->etatJeu->fenetreL / 25, "Perdu !");
 			break;
 		default:
 			break;

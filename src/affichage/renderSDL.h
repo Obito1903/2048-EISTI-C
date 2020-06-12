@@ -22,35 +22,47 @@
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
- *  @brief
+ *  @brief Réalise le rendu d'un texte sur l'écran
  *
- *  @param[in]
+ *  @param[in,out] renderer : Ecran vers lequel faire le rendu
+ *  @param[in] str : texte a affiché
+ *  @param[in] font : Police a utiliser
+ *  @param[in] taille : taille de la police a utiliser
+ *  @param[in] x : position horizontal du texte sur l'ecran
+ *  @param[in] y : position vertical du texte sur l'écran
  *
  */
-void renderTxt(SDL_Renderer *ren, const char *str, TTF_Font *font, int size, int x, int y);
+void renderTexte(SDL_Renderer *renderer, const char *str, TTF_Font *font, int taille, int x, int y);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
- *  @brief
+ *  @brief Réalise le rendu d'une texture a l'écran
  *
- *  @param[in]
+ *  @param[in] texture : texture a affiché
+ *  @param[in,out] renderer : Ecran vers lequel faire le rendu
+ *  @param[in] x : position horizontal du texte sur l'ecran
+ *  @param[in] y : position vertical du texte sur l'écran
+ *  @param[in] h : taille horizontal
+ *  @param[in] w : taille vertical
  *
  */
-void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int h, int w);
+void renderTexture(SDL_Texture *texture, SDL_Renderer *renderer, int x, int y, int h, int w);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:31
  *
- *  @brief
+ *  @brief Réalise le rendu d'un bouton
  *
- *  @param[in]
+ *  @param[in] bouton : bouton a afficher
+ *  @param[in,out] renderer : Ecran vers lequel faire le rendu
+ *  @param[in] font : police avec laquel afficher le texte
  *
  */
-void renderButtons(button *button, SDL_Renderer *ren, TTF_Font *font);
+void renderButtons(button *bouton, SDL_Renderer *renderer, TTF_Font *font);
 
 #endif // __RENDERSDL_H__

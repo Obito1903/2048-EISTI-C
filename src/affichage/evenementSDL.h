@@ -22,37 +22,53 @@
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
- *  @date Tue 12 May 2020 12:02
+ *  @date Thu 11 Jun 2020 15:29
  *
- *  @brief
+ *  @brief Exectute la fonction associé avec le pouton cliqué
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in] idBouton : id du bouton qui doit etre executé
  *
  */
-void gestionTouche(etatJeu *jeu, Buttons *buttons, SDL_Keycode touche);
+void execBouton(jeu *Jeu, uint idBouton);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:03
  *
- *  @brief
+ *  @brief Gére et execute les fonction assicié au diferents evenements
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in] event : evenement a traiter
  *
  */
-void gestionEvenement(etatJeu *jeu, Buttons *buttons, SDL_Event *event);
+void gestionEvenement(jeu *Jeu, SDL_Event *event);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 12:02
+ *
+ *  @brief Execute la fonction associé a la touche entré en paramètre
+ *
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in] touche : id de la touche
+ *
+ */
+void gestionTouche(jeu *Jeu, SDL_Keycode touche);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:52
  *
- *  @brief
+ *  @brief Execute la fonction associé au clique souris
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in] event : evenemet souris a traiter
  *
  */
-void gestionCliqueSouris(etatJeu *jeu, Buttons *buttons, SDL_MouseButtonEvent *event);
+void gestionCliqueSouris(jeu *Jeu, SDL_MouseButtonEvent *event);
 
 #endif // __EVENEMENTSDL_H__

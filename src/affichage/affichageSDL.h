@@ -21,8 +21,40 @@
 #include "renderSDL.h"
 #include "evenementSDL.h"
 
-#define FENETRE_H 720
-#define FENETRE_L 1280
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Tue 12 May 2020 10:26
+ *
+ *  @brief Permet de controler la fréquence refraichissement de l'ecran
+ *
+ *  @param[in] tmp: temp mis pour le rendu de la frame actuel
+ *
+ */
+void frameControl(double tmp);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 10 Jun 2020 12:12
+ *
+ *  @brief Initialise la SDL et les modules associé
+ *
+ */
+void initSDL(void);
+
+/**
+ *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @version 0.1
+ *  @date Wed 10 Jun 2020 12:12
+ *
+ *  @brief Initialise l'affichage et la banque de texture
+ *
+ *  @param[in] EtatJeu : structure contenant l'etat du jeu
+ *  @return La structure contenant tout ce qui est necaissaire a l'affichage du jeu
+ *
+ */
+jeu *initAffichage(etatJeu *EtatJeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -31,69 +63,59 @@
  *
  *  @brief Fonction principale de l'affichage
  *
- *  @param[in]
+ *  @param[in] EtatJeu : structure contenant l'etat du jeu
  *
  */
-void mainAffichage(etatJeu *jeu);
+void mainAffichage(etatJeu *EtatJeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
- *  @brief
+ *  @brief Fonction permettant d'appeler les fonction de dessin specifique aux differents Etats du jeu
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
  *
  */
-void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font, Buttons *buttons);
+void dessiner(jeu *Jeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Thu 11 Jun 2020 15:01
  *
- *  @brief
+ *  @brief Dessines les boutons a l'écran
  *
- *  @param[in]
- *
- */
-void dessineBoutons(SDL_Renderer *renderer, TTF_Font *font, Buttons *buttons);
-
-/**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
- *  @version 0.1
- *  @date Tue 12 May 2020 12:29
- *
- *  @brief
- *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
  *
  */
-void dessineFin(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font, Buttons *buttons);
+void dessineBoutons(jeu *Jeu);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Fri 12 Jun 2020 13:57
  *
- *  @brief
+ *  @brief Lance la création des texture pour les case dont la valeurs n'a pas de texture associé
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in] valCase : valeur de la case dont la texture doit être créé
+ *  @param[in] tailleCasePx : taille en pixel de la texture a créer
  *
  */
-void creationCase(SDL_Renderer *renderer, TextureBank *TexBank, uint valCase, TTF_Font *font, uint tailleCasePx);
+void creationTextureCase(jeu *Jeu, uint valCase, uint tailleCasePx);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 12:29
  *
- *  @brief
+ *  @brief Dessine le plateau de jeu a l'écran
  *
- *  @param[in]
+ *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
  *
  */
-void dessinePlateau(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font);
+void dessinePlateau(jeu *Jeu);
 
 #endif // __AFFICHAGESDL_H__
