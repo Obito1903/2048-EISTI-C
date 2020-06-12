@@ -6,7 +6,17 @@ Projet 2020.
 
 ### Compilation
 
-Pour l'instant la compilation ne fonctionne que sous linux en raison de certaines dépendance au niveau du terminal n'existant pas sous windows.
+l'executable se trouvera dans le dossier `bin`
+
+#### Linux
+
+Sous linux la compilation nécessite les bibliothèques suivantes :
+
+- libsdl2-dev
+- libsdl2-image-dev
+- libsdl2-ttf-dev
+
+Une fois les dependances nécaissaire installé il suffit d'executé le commande suivante
 
 ```shell
 make all && make clean
@@ -16,6 +26,16 @@ pour surpimer aussi l'executable
 
 ```shell
 make cleanall
+```
+
+#### Windows
+
+Sous windows il faudra telechargé la bibliothèque de developpement SDL2 et extraire les fichier de la bibliotèque ou ce trouve le les fichier du jeu
+
+Une fois les dependances nécaissaire installé il suffit d'executé le commande suivante
+
+```shell
+make win && make clean
 ```
 
 ### Execution
@@ -37,8 +57,6 @@ Permet de specifier la taille du plateau.
 ```
 
 Permet de charger un fichier de sauvegarde.
-
-## Implementation
 
 ### Rapport
 
