@@ -32,10 +32,12 @@ etatJeu *allocJeu(int taille)
 etatJeu *initJeu(int taille)
 {
 	etatJeu *jeu = allocJeu(taille);
-	jeu->nbCoups = 0;
-
-	int int_y;
-	int int_x;
+	int		 int_y;
+	int		 int_x;
+	jeu->nbCoups  = 0;
+	jeu->fenetreH = 720;
+	jeu->fenetreL = 1280;
+	jeu->victoire = 0;
 	for (int_y = 0; int_y < jeu->plateau->taille; int_y++) {
 		for (int_x = 0; int_x < jeu->plateau->taille; int_x++) {
 			jeu->plateau->tab[int_y][int_x] = 0;
@@ -76,8 +78,8 @@ void savJeu(etatJeu *jeu)
 		}
 	}
 	fclose(fichierSauv);
-	printf("Partei sauvegarder !\n\r");
-	jeu->etatJeu = False;
+	printf("Partie sauvegarder !\n\r");
+	jeu->etatJeu = FIN;
 }
 
 etatJeu *chargeJeu(char *chemin)

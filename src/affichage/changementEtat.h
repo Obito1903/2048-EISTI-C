@@ -16,7 +16,32 @@
 
 #include "../jeu2048.h"
 #include "textureManager.h"
-#include "evenementSDL.h"
+
+/**
+ * @struct button
+ *
+ */
+typedef struct
+{
+	/*!  */
+	int	  x;
+	int	  y;
+	int	  size;
+	int	  h;
+	int	  w;
+	char *texte;
+} button;
+
+/**
+ * @struct tabButton
+ *
+ */
+typedef struct
+{
+	/*!  */
+	button **tabButton;
+	uint	 nbButtons;
+} Buttons;
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -29,6 +54,6 @@
  *  @return
  *
  */
-void chargeEtat(int Etat, etatJeu *jeu, Buttons *Buttons, TextureBank *texBank, SDL_Renderer *ren);
+void chargeEtat(int Etat, etatJeu *jeu, Buttons *Buttons);
 
 #endif // __CHANGEMENTETAT_H__

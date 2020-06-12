@@ -48,16 +48,14 @@ void mainAffichage(etatJeu *jeu)
 {
 	initSDL();
 
-	SDL_Window *win =
-		SDL_CreateWindow("Hello World!", 100, 100, FENETRE_L, FENETRE_H, SDL_WINDOW_SHOWN);
+	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, jeu->fenetreL, jeu->fenetreH, SDL_WINDOW_SHOWN);
 	if (win == NULL) {
 		printf("SDL_CreateWindow Error: %s \n", SDL_GetError());
 		SDL_Quit();
 		exit(EXIT_FAILURE);
 	}
 
-	SDL_Renderer *ren =
-		SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (ren == NULL) {
 		SDL_DestroyWindow(win);
 		printf("SDL_CreateRenderer Error: %s \n", SDL_GetError());
@@ -75,7 +73,10 @@ void mainAffichage(etatJeu *jeu)
 	buttons.tabButton = NULL;
 	buttons.nbButtons = 0;
 
-	chargeEtat(1, jeu, &buttons, TexBank, ren);
+	chargeEtat(2, jeu, &buttons);
+
+	TexBank->bank[1]			= allocNewTexture(TexBank->bank[1], NULL);
+	TexBank->bank[1]->tabTex[0] = loadTexture("./src/assets/template_background.png", ren);
 
 	clock_t start, end;
 	double	cpu_time_used;
@@ -96,21 +97,17 @@ void mainAffichage(etatJeu *jeu)
 	SDL_Quit();
 }
 
-void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
-			  Buttons *buttons)
+void dessiner(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font, Buttons *buttons)
 {
 	SDL_SetRenderDrawColor(renderer, 52, 52, 52, 255);
 	switch (jeu->etatJeu) {
-		case 1:
-			dessinePlateau(renderer, TexBank, jeu, font);
-			dessineBoutons(renderer, font, buttons);
-			break;
 		case 2:
-			dessineAccueil(renderer, TexBank, jeu, font, buttons);
+			dessinePlateau(renderer, TexBank, jeu, font);
 			break;
 		default:
 			break;
 	}
+	dessineBoutons(renderer, font, buttons);
 }
 
 void dessineBoutons(SDL_Renderer *renderer, TTF_Font *font, Buttons *buttons)
@@ -121,33 +118,32 @@ void dessineBoutons(SDL_Renderer *renderer, TTF_Font *font, Buttons *buttons)
 	}
 }
 
-void dessineAccueil(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font,
-					Buttons *buttons)
-{}
+void creationCase(SDL_Renderer *renderer, TextureBank *TexBank, uint valCase, TTF_Font *font, uint tailleCasePx)
+{
+	int int_text;
+	if (TexBank->bank[0]->tabTex == NULL) {
+		TexBank->bank[0] = createTileTexture(renderer, TexBank->bank[0], font, tailleCasePx, valCase);
+	} else if (TexBank->bank[0]->taille < (int)(log2(valCase))) {
+		for (int_text = TexBank->bank[0]->taille; int_text < (int)(log2(valCase)); int_text++) {
+			TexBank->bank[0] = createTileTexture(renderer, TexBank->bank[0], font, tailleCasePx, (int)pow(2, int_text + 1));
+		}
+	}
+}
 
 void dessinePlateau(SDL_Renderer *renderer, TextureBank *TexBank, etatJeu *jeu, TTF_Font *font)
 {
-	int tailleCasePx  = FENETRE_H / (jeu->plateau->taille + 2);
+	int tailleCasePx  = (jeu->fenetreH) / (jeu->plateau->taille + 2);
 	int decallageVert = tailleCasePx - (4 * (jeu->plateau->taille - 1));
 	int int_y;
 	int int_x;
 	for (int_y = 0; int_y < jeu->plateau->taille; int_y++) {
 		for (int_x = 0; int_x < jeu->plateau->taille; int_x++) {
-			renderTexture(TexBank->bank[1]->tabTex[0], renderer,
-						  (int_x * (tailleCasePx + 4)) + decallageVert - 2,
-						  (int_y * (tailleCasePx + 4)) + decallageVert - 2, tailleCasePx + 4,
-						  tailleCasePx + 4);
+			renderTexture(TexBank->bank[1]->tabTex[0], renderer, (int_x * (tailleCasePx + 4)) + decallageVert - 2,
+						  (int_y * (tailleCasePx + 4)) + decallageVert - 2, tailleCasePx + 4, tailleCasePx + 4);
 			if (jeu->plateau->tab[int_y][int_x] != 0) {
-				if (TexBank->bank[0]->tabTex == NULL ||
-					(TexBank->bank[0]->taille < (int)(log2(jeu->plateau->tab[int_y][int_x])))) {
-					TexBank->bank[0] =
-						createTileTexture(renderer, TexBank->bank[0], font, tailleCasePx,
-										  jeu->plateau->tab[int_y][int_x]);
-				}
-				renderTexture(
-					TexBank->bank[0]->tabTex[(int)(log2(jeu->plateau->tab[int_y][int_x])) - 1],
-					renderer, (int_x * (tailleCasePx + 4)) + decallageVert,
-					(int_y * (tailleCasePx + 4)) + decallageVert, tailleCasePx, tailleCasePx);
+				creationCase(renderer, TexBank, jeu->plateau->tab[int_y][int_x], font, tailleCasePx);
+				renderTexture(TexBank->bank[0]->tabTex[(int)(log2(jeu->plateau->tab[int_y][int_x])) - 1], renderer,
+							  (int_x * (tailleCasePx + 4)) + decallageVert, (int_y * (tailleCasePx + 4)) + decallageVert, tailleCasePx, tailleCasePx);
 			}
 		}
 	}

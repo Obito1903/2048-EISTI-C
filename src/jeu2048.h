@@ -16,6 +16,7 @@
 
 #include "jeuBase.h"
 #include "deplacement.h"
+#include "affichage/changementEtat.h"
 #include "init2048.h"
 
 /**

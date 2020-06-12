@@ -14,19 +14,19 @@ int finPartie(etatJeu *jeu)
 	int retour = 1; // Variable de retour
 	int y;
 	int x;
-	for (y = 0; y < jeu->plateau->taille; y++) {
-		for (x = 0; x < jeu->plateau->taille; x++) {
-			if (jeu->plateau->tab[x][y] == 2048) {
-				printf("2048 !\n\r");
-				retour = 2;
-			}
-			if ((retour == 1) && (jeu->plateau->tab[x][y] == 0)) {
-				printf("Perdu !\n\r");
-				retour = 0;
+	if (!ajouteCase(jeu)) {
+		jeu->victoire = -1;
+		printf("Perdu !\n\r");
+	} else if (jeu->victoire != 2) {
+		for (y = 0; y < jeu->plateau->taille; y++) {
+			for (x = 0; x < jeu->plateau->taille; x++) {
+				if (jeu->plateau->tab[x][y] == 2048) {
+					jeu->victoire = 1;
+					printf("2048 !\n\r");
+				}
 			}
 		}
 	}
-
 	return (retour);
 }
 
@@ -45,7 +45,7 @@ uint ajouteCase(etatJeu *jeu)
 				coordActu.x = int_x;
 				coordActu.y = int_y;
 				tCoord->taille++;
-				tCoord->lCoord = (coord *)realloc(tCoord->lCoord, sizeof(coord) * tCoord->taille);
+				tCoord->lCoord					   = (coord *)realloc(tCoord->lCoord, sizeof(coord) * tCoord->taille);
 				tCoord->lCoord[tCoord->taille - 1] = coordActu;
 			}
 		}

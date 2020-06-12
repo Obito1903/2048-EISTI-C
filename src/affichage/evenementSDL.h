@@ -17,32 +17,7 @@
 #include <SDL2/SDL.h>
 
 #include "../jeu2048.h"
-
-/**
- * @struct button
- *
- */
-typedef struct
-{
-	/*!  */
-	int	  x;
-	int	  y;
-	int	  size;
-	int	  h;
-	int	  w;
-	char *texte;
-} button;
-
-/**
- * @struct tabButton
- *
- */
-typedef struct
-{
-	/*!  */
-	button **tabButton;
-	uint	 nbButtons;
-} Buttons;
+#include "changementEtat.h"
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
@@ -54,7 +29,7 @@ typedef struct
  *  @param[in]
  *
  */
-void gestionTouche(etatJeu *jeu, SDL_Keycode touche);
+void gestionTouche(etatJeu *jeu, Buttons *buttons, SDL_Keycode touche);
 
 /**
  *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>

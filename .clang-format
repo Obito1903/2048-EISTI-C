@@ -17,7 +17,7 @@ BinPackParameters: 'true'
 BreakBeforeBraces: Mozilla
 BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
-ColumnLimit: '100'
+ColumnLimit: '150'
 CompactNamespaces: 'false'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
 Cpp11BracedListStyle: 'true'

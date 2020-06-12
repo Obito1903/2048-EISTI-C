@@ -19,6 +19,20 @@
 #include <string.h>
 
 /**
+ * @enum Etat
+ *
+ */
+typedef enum
+{
+	/*!  */
+	FIN		 = 0,
+	JEU		 = 2,
+	PAUSE	 = 3,
+	VICTOIRE = 1,
+	PERDU	 = -1
+} Etat;
+
+/**
  * @struct plateau
  * contient le plateau de jeu
  */
@@ -38,10 +52,13 @@ typedef struct
 {
 	/*! pointeur vers plateau  */
 	plateau *plateau;
+	int		 fenetreL;
+	int		 fenetreH;
 	/*! compteur du nombre de coups */
 	uint nbCoups;
 	/*! Si le jeu est en cours ou non */
-	int etatJeu;
+	int	 victoire;
+	Etat etatJeu;
 } etatJeu;
 
 #endif // __JEUBASE_H__

@@ -17,14 +17,11 @@ TextureBank *addTextureBank(TextureBank *texBank)
 		texBank->bank[0]		 = (tabTextures *)malloc(sizeof(tabTextures));
 		texBank->bank[0]->tabTex = NULL;
 		texBank->taille			 = 1;
-		printf("A\n");
 	} else {
-		texBank->bank =
-			(tabTextures **)realloc(texBank->bank, sizeof(tabTextures *) * (texBank->taille + 1));
+		texBank->bank						   = (tabTextures **)realloc(texBank->bank, sizeof(tabTextures *) * (texBank->taille + 1));
 		texBank->bank[texBank->taille]		   = (tabTextures *)malloc(sizeof(tabTextures));
 		texBank->bank[texBank->taille]->tabTex = NULL;
 		texBank->taille++;
-		printf("B\n");
 	}
 
 	return (texBank);
@@ -95,20 +92,15 @@ tabTextures *allocNewTexture(tabTextures *tabTex, int *tileValue)
 	if (tabTex->tabTex == NULL) {
 		tabTex->tabTex = (SDL_Texture **)malloc(sizeof(SDL_Texture *));
 		tabTex->taille = 1;
-		if (tileValue != NULL) {
-			*tileValue = 2;
-		}
 
 	} else {
-		tabTex->tabTex =
-			(SDL_Texture **)realloc(tabTex->tabTex, sizeof(SDL_Texture *) * (tabTex->taille + 1));
+		tabTex->tabTex = (SDL_Texture **)realloc(tabTex->tabTex, sizeof(SDL_Texture *) * (tabTex->taille + 1));
 		tabTex->taille++;
 	}
 	return tabTex;
 }
 
-tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font *font, int taille,
-							   int tileValue)
+tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font *font, int taille, int tileValue)
 {
 	SDL_Rect dst   = {0, 0, 0, 0};
 	int		 reduc = 0;
@@ -117,15 +109,13 @@ tabTextures *createTileTexture(SDL_Renderer *ren, tabTextures *tabTile, TTF_Font
 
 	// Crée le texture du texte
 	sprintf(str, "%d", tileValue);
-	printf("%d\n", tileValue);
 	SDL_Rect	 r		   = {0, 0, taille, taille};
 	SDL_Color	 color	   = {255, 255, 255, 255};
 	SDL_Surface *surface   = TTF_RenderText_Blended(font, str, color);
 	SDL_Texture *texNumber = SDL_CreateTextureFromSurface(ren, surface);
 
 	// Crée la texture de support
-	SDL_Texture *texTarget =
-		SDL_CreateTexture(ren, SDL_PIXELFORMAT_UNKNOWN, SDL_TEXTUREACCESS_TARGET, taille, taille);
+	SDL_Texture *texTarget	   = SDL_CreateTexture(ren, SDL_PIXELFORMAT_UNKNOWN, SDL_TEXTUREACCESS_TARGET, taille, taille);
 	SDL_Texture *texBackground = loadTexture("./src/assets/template.png", ren);
 	SDL_Color	 couleur	   = setTileColor(tileValue);
 	SDL_SetTextureColorMod(texBackground, couleur.r, couleur.g, couleur.b);
