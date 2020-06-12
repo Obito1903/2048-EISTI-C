@@ -2,6 +2,8 @@
 
 Projet 2020.
 
+[Git](https://gitlab.etude.eisti.fr/rodriguess/projet-2020)
+
 ## Utilisation
 
 ### Compilation
@@ -57,6 +59,10 @@ Permet de specifier la taille du plateau.
 ```
 
 Permet de charger un fichier de sauvegarde.
+
+#### Interaction
+
+Le jeu ce joue avec les flêches du clavier. La touche `echape` permet d'affiché un menu avec l'option de sauvegarder la partie ou bien quitter le jeu.
 
 ### Rapport
 
