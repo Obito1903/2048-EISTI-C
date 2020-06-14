@@ -34,7 +34,7 @@
 void frameControl(double tmp);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:12
  *
@@ -44,7 +44,7 @@ void frameControl(double tmp);
 void initSDL(void);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:12
  *
@@ -69,7 +69,7 @@ jeu *initAffichage(etatJeu *EtatJeu);
 void mainAffichage(etatJeu *EtatJeu);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
@@ -81,7 +81,7 @@ void mainAffichage(etatJeu *EtatJeu);
 void dessiner(jeu *Jeu);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Thu 11 Jun 2020 15:01
  *
@@ -107,7 +107,7 @@ void dessineBoutons(jeu *Jeu);
 void creationTextureCase(jeu *Jeu, uint valCase, uint tailleCasePx);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 12:29
  *

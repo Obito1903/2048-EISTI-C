@@ -1,5 +1,5 @@
 /** @file evenementSDL.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:34
  *
@@ -20,7 +20,7 @@
 #include "changementEtat.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Thu 11 Jun 2020 15:29
  *
@@ -33,7 +33,7 @@
 void execBouton(jeu *Jeu, uint idBouton);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:03
  *
@@ -46,7 +46,7 @@ void execBouton(jeu *Jeu, uint idBouton);
 void gestionEvenement(jeu *Jeu, SDL_Event *event);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 12:02
  *
@@ -59,7 +59,7 @@ void gestionEvenement(jeu *Jeu, SDL_Event *event);
 void gestionTouche(jeu *Jeu, SDL_Keycode touche);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:52
  *

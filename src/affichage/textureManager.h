@@ -59,7 +59,7 @@ typedef struct
 TextureBank *ajouteTextureBank(TextureBank *texBank);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 26 May 2020 10:21
  *
@@ -86,7 +86,7 @@ tabTextures *allocNouvelleTexture(tabTextures *tabTile);
 TTF_Font *trouvePolice(int fontSize);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 26 May 2020 10:21
  *
@@ -100,7 +100,7 @@ TTF_Font *trouvePolice(int fontSize);
 SDL_Texture *chargeTexture(const char *file, SDL_Renderer *ren);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 26 May 2020 10:21
  *

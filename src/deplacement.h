@@ -1,5 +1,5 @@
 /** @file deplacement.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 09 May 2020 16:53
  *

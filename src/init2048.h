@@ -1,5 +1,5 @@
 /** @file init2048.c
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 09 May 2020 16:28
  *
@@ -9,9 +9,9 @@
 
 #ifndef __INIT2048_H__
 /**
-*  @def __INIT2048_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
-*/
+ *  @def __INIT2048_H__
+ *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ */
 #define __INIT2048_H__
 
 #include "jeuBase.h"
@@ -20,7 +20,7 @@
 #include <sys/stat.h>
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 09 May 2020 16:43
  *
@@ -33,7 +33,7 @@
 etatJeu *allocJeu(int taille);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sat 09 May 2020 16:39
  *
@@ -46,7 +46,7 @@ etatJeu *allocJeu(int taille);
 etatJeu *initJeu(int taille);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Sun 10 May 2020 16:04
  *

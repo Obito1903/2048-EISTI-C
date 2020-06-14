@@ -1,5 +1,5 @@
 /** @file main.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 05 May 2020 10:51
  *
@@ -32,7 +32,7 @@
 void traitementArgs(int argc, char *argv[]);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author William Meunier <william.meunier@eisti.eu>
  *  @version 0.1
  *  @date Tue 05 May 2020 10:58
  *

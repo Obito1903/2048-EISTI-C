@@ -1,5 +1,5 @@
 /** @file renderSDL.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:30
  *
@@ -18,7 +18,7 @@
 #include "changementEtat.h"
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
@@ -35,7 +35,7 @@
 void renderTexte(SDL_Renderer *renderer, const char *str, TTF_Font *font, int taille, int x, int y);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
@@ -52,7 +52,7 @@ void renderTexte(SDL_Renderer *renderer, const char *str, TTF_Font *font, int ta
 void renderTexture(SDL_Texture *texture, SDL_Renderer *renderer, int x, int y, int h, int w);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Hugo Mosser <hugomosser@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:31
  *

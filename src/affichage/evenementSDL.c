@@ -1,5 +1,5 @@
 /** @file evenementSDL.c
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:34
  *

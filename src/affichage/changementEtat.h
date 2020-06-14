@@ -1,5 +1,5 @@
 /** @file changementEtat.h
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:19
  *
@@ -85,7 +85,7 @@ void ajouteButton(Buttons *boutons, uint x, uint y, uint size, char *texte);
 void freeBoutons(Buttons *Buttons);
 
 /**
- *  @author Samuel Rodrigues <samuel.rodrigues@eisti.eu>
+ *  @author Théo Paesa <theo.paesa@eisti.eu>
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:15
  *
