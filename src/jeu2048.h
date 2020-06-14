@@ -10,7 +10,7 @@
 #ifndef __JEU2048_H__
 /**
  *  @def __JEU2048_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __JEU2048_H__
 
@@ -49,7 +49,7 @@ typedef struct
  *  @version 0.1
  *  @date Sat 09 May 2020 17:48
  *
- *  @brief Test les condition de fin de partie
+ *  @brief Test les conditions de fin de partie
  *
  *  @param[in] jeu : pointeur vers le jeu
  *  @return 1 si le plateau est plein, 2 si la partie est gagné, 0 si la partie continue

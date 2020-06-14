@@ -18,13 +18,13 @@ Sous linux la compilation nécessite les bibliothèques suivantes :
 - libsdl2-image-dev
 - libsdl2-ttf-dev
 
-Une fois les dependances nécaissaires installées il suffit d'executer les commandes suivantes
+Une fois les dependances nécessaires installées il suffit d'executer les commandes suivantes
 
 ```shell
 make all && make clean
 ```
 
-pour surpimer aussi l'éxécutable
+pour supprimer aussi l'éxécutable
 
 ```shell
 make cleanall
@@ -82,7 +82,7 @@ Quelques infos sur les outils que je conseille d'utiliser durant ce projet
 
 ### Git
 
-Git est un outil permettant le partage et la gestion des modification d'un code source.
+Git est un outil permettant le partage et la gestion des modifications d'un code source.
 
 Pour plus d'infos sur son utilisation [ici](Docs/GIT.md)
 

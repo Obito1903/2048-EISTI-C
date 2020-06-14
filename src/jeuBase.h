@@ -10,7 +10,7 @@
 #ifndef __JEUBASE_H__
 /**
  *  @def __JEUBASE_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __JEUBASE_H__
 
@@ -38,7 +38,7 @@ typedef enum
  */
 typedef struct
 {
-	/*! Tableau a deux dimension d'entier non signé */
+	/*! Tableau a 2 dimensions d'entiers non signés */
 	uint **tab;
 	/*! taille du plateau */
 	int taille;

@@ -10,7 +10,7 @@
 #ifndef __CHANGEMENTETAT_H__
 /**
  *  @def __CHANGEMENTETAT_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier à déjà été chargé.
  */
 #define __CHANGEMENTETAT_H__
 
@@ -19,19 +19,19 @@
 
 /**
  * @struct button
- * Contient les info pour pouvoir affucher un bouton et connaitre son emplacement
+ * Contient les informations pour pouvoir afficher un bouton et connaître son emplacement
  */
 typedef struct
 {
 	/*! Position en x et y sur l'écran */
 	int x;
 	int y;
-	/*! Taille de la police du texte a l'interieur */
+	/*! Taille de la police du texte à l'interieur */
 	int size;
 	/*! Taille du bouton */
 	int h;
 	int w;
-	/*! Texte a afficher a l'interieur du bouton */
+	/*! Texte à afficher à l'interieur du bouton */
 	char *texte;
 } button;
 
@@ -62,7 +62,7 @@ typedef struct
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:41
  *
- *  @brief Crée un nouveau bouton et l'ajout au tableau de bouton
+ *  @brief Créé un nouveau bouton et l'ajoute au tableau de boutons
  *
  *  @param[in,out] boutons : tableau de bouton
  *  @param[in] x : position du centre en x sur l'écran
@@ -91,8 +91,8 @@ void freeBoutons(Buttons *Buttons);
  *
  *  @brief Charge l'etat du jeu demandé
  *
- * 	@param[in] Etat : id de l'etat vers le quel changé
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ * 	@param[in] Etat : id de l'etat vers lequel changé
+ *  @param[in,out] Jeu : Structure contenant les données necessaire a l'affichage
  *
  */
 void chargeEtat(int Etat, jeu *Jeu);

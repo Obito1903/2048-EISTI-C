@@ -10,7 +10,7 @@
 #ifndef __EVENEMENTSDL_H__
 /**
  *  @def __EVENEMENTSDL_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __EVENEMENTSDL_H__
 
@@ -24,9 +24,9 @@
  *  @version 0.1
  *  @date Thu 11 Jun 2020 15:29
  *
- *  @brief Exectute la fonction associé avec le pouton cliqué
+ *  @brief Exectute la fonction associée au bouton cliqué
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire a l'affichage
  *  @param[in] idBouton : id du bouton qui doit etre executé
  *
  */
@@ -37,9 +37,9 @@ void execBouton(jeu *Jeu, uint idBouton);
  *  @version 0.1
  *  @date Tue 12 May 2020 11:03
  *
- *  @brief Gére et execute les fonction assicié au diferents evenements
+ *  @brief Gére et execute les fonctions associées aux differents evenements
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire a l'affichage
  *  @param[in] event : evenement a traiter
  *
  */
@@ -50,9 +50,9 @@ void gestionEvenement(jeu *Jeu, SDL_Event *event);
  *  @version 0.1
  *  @date Tue 12 May 2020 12:02
  *
- *  @brief Execute la fonction associé a la touche entré en paramètre
+ *  @brief Execute la fonction associée a la touche entrée en paramètre
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire a l'affichage
  *  @param[in] touche : id de la touche
  *
  */
@@ -63,9 +63,9 @@ void gestionTouche(jeu *Jeu, SDL_Keycode touche);
  *  @version 0.1
  *  @date Tue 09 Jun 2020 10:52
  *
- *  @brief Execute la fonction associé au clique souris
+ *  @brief Execute la fonction associée au clique souris
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire a l'affichage
  *  @param[in] event : evenemet souris a traiter
  *
  */

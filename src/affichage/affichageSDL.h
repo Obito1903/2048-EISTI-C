@@ -10,7 +10,7 @@
 #ifndef __AFFICHAGESDL_H__
 /**
  *  @def __AFFICHAGESDL_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __AFFICHAGESDL_H__
 
@@ -26,9 +26,9 @@
  *  @version 0.1
  *  @date Tue 12 May 2020 10:26
  *
- *  @brief Permet de controler la fréquence refraichissement de l'ecran
+ *  @brief Permet de contrôler la fréquence refraichissement de l'écran
  *
- *  @param[in] tmp: temp mis pour le rendu de la frame actuel
+ *  @param[in] tmp: temps mis pour le rendu de la frame actuel
  *
  */
 void frameControl(double tmp);
@@ -38,7 +38,7 @@ void frameControl(double tmp);
  *  @version 0.1
  *  @date Wed 10 Jun 2020 12:12
  *
- *  @brief Initialise la SDL et les modules associé
+ *  @brief Initialise la SDL et les modules associés
  *
  */
 void initSDL(void);
@@ -51,7 +51,7 @@ void initSDL(void);
  *  @brief Initialise l'affichage et la banque de texture
  *
  *  @param[in] EtatJeu : structure contenant l'etat du jeu
- *  @return La structure contenant tout ce qui est necaissaire a l'affichage du jeu
+ *  @return La structure contenant tout ce qui est necessaire à l'affichage du jeu
  *
  */
 jeu *initAffichage(etatJeu *EtatJeu);
@@ -63,7 +63,7 @@ jeu *initAffichage(etatJeu *EtatJeu);
  *
  *  @brief Fonction principale de l'affichage
  *
- *  @param[in] EtatJeu : structure contenant l'etat du jeu
+ *  @param[in] EtatJeu : structure contenant l'état du jeu
  *
  */
 void mainAffichage(etatJeu *EtatJeu);
@@ -73,9 +73,9 @@ void mainAffichage(etatJeu *EtatJeu);
  *  @version 0.1
  *  @date Tue 12 May 2020 11:12
  *
- *  @brief Fonction permettant d'appeler les fonction de dessin specifique aux differents Etats du jeu
+ *  @brief Fonction permettant d'appeler les fonctions de dessin spécifiques aux differents Etats du jeu
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire à l'affichage
  *
  */
 void dessiner(jeu *Jeu);
@@ -85,9 +85,9 @@ void dessiner(jeu *Jeu);
  *  @version 0.1
  *  @date Thu 11 Jun 2020 15:01
  *
- *  @brief Dessines les boutons a l'écran
+ *  @brief Dessines les boutons à l'écran
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire à l'affichage
  *
  */
 void dessineBoutons(jeu *Jeu);
@@ -97,11 +97,11 @@ void dessineBoutons(jeu *Jeu);
  *  @version 0.1
  *  @date Fri 12 Jun 2020 13:57
  *
- *  @brief Lance la création des texture pour les case dont la valeurs n'a pas de texture associé
+ *  @brief Lance la création des textures pour les cases dont la valeur n'a pas de texture associée
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
- *  @param[in] valCase : valeur de la case dont la texture doit être créé
- *  @param[in] tailleCasePx : taille en pixel de la texture a créer
+ *  @param[in,out] Jeu : Structure contenant les données necessaire à l'affichage
+ *  @param[in] valCase : valeur de la case dont la texture doit être créée
+ *  @param[in] tailleCasePx : taille en pixel de la texture à créer
  *
  */
 void creationTextureCase(jeu *Jeu, uint valCase, uint tailleCasePx);
@@ -111,9 +111,9 @@ void creationTextureCase(jeu *Jeu, uint valCase, uint tailleCasePx);
  *  @version 0.1
  *  @date Tue 12 May 2020 12:29
  *
- *  @brief Dessine le plateau de jeu a l'écran
+ *  @brief Dessine le plateau de jeu à l'écran
  *
- *  @param[in,out] Jeu : Structure contenant les donnés necaissaire a l'affichage
+ *  @param[in,out] Jeu : Structure contenant les données necessaire à l'affichage
  *
  */
 void dessinePlateau(jeu *Jeu);

@@ -11,7 +11,7 @@
 
 void frameControl(double tmp)
 {
-	// Si le rendu a pris moins de 16ms alors on attend jusqu'a ce que le temp totale soit de 16ms
+	// Si le rendu a pris moins de 16ms alors on attend jusqu'à ce que le temps total soit de 16ms
 	if (tmp < 0.016) {
 		SDL_Delay(16 - tmp);
 
@@ -48,7 +48,7 @@ jeu *initAffichage(etatJeu *EtatJeu)
 		SDL_Quit();
 		exit(EXIT_FAILURE);
 	}
-	// Création de l'ecran
+	// Création de l'écran
 	Jeu->renderer = SDL_CreateRenderer(Jeu->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (Jeu->renderer == NULL) {
 		SDL_DestroyWindow(Jeu->window);
@@ -57,14 +57,14 @@ jeu *initAffichage(etatJeu *EtatJeu)
 		exit(EXIT_FAILURE);
 	}
 
-	// Création de la banque de texture qui contiedra toutes les textures necaissaire a l'affichage
+	// Création de la banque de texture qui contiendra toutes les textures necessaire à l'affichage
 	Jeu->TextureBank					 = ajouteTextureBank(NULL);
 	Jeu->TextureBank					 = ajouteTextureBank(Jeu->TextureBank);
 	Jeu->TextureBank->bank[1]			 = allocNouvelleTexture(Jeu->TextureBank->bank[1]);
 	Jeu->TextureBank->bank[1]->tabTex[0] = chargeTexture("./src/assets/template_background.png", Jeu->renderer);
 	Jeu->font							 = trouvePolice(FONTSIZE);
 
-	// Création d'un tableau qui contiendra les boutons a affiché a l'écran
+	// Création d'un tableau qui contiendra les boutons à afficher à l'écran
 	Jeu->boutons			= (Buttons *)malloc(sizeof(Buttons));
 	Jeu->boutons->tabButton = NULL;
 	Jeu->boutons->nbButtons = 0;
@@ -99,7 +99,7 @@ void mainAffichage(etatJeu *EtatJeu)
 
 void dessiner(jeu *Jeu)
 {
-	// On reinitialise la couleur de dessin
+	// On réinitialise la couleur de dessin
 	SDL_SetRenderDrawColor(Jeu->renderer, 52, 52, 52, 255);
 	switch (Jeu->etatJeu->etatJeu) {
 		case 2:
@@ -114,7 +114,7 @@ void dessiner(jeu *Jeu)
 void dessineBoutons(jeu *Jeu)
 {
 	uint int_boutons;
-	// On parcour le tableau de boutons et on les affichage un par un
+	// On parcourt le tableau de boutons et on les affiche un par un
 	for (int_boutons = 0; int_boutons < Jeu->boutons->nbButtons; int_boutons++) {
 		renderButtons(Jeu->boutons->tabButton[int_boutons], Jeu->renderer, Jeu->font);
 	}
@@ -123,13 +123,13 @@ void dessineBoutons(jeu *Jeu)
 void creationTextureCase(jeu *Jeu, uint valCase, uint tailleCasePx)
 {
 	int int_text;
-	// Si le tableau de texture des cases est vide alors on l'aloue et on y crée la premiere texture
+	// Si le tableau de texture des cases est vide alors on l'aloue et on y créé la première texture
 	if (Jeu->TextureBank->bank[0]->tabTex == NULL) {
 		Jeu->TextureBank->bank[0] =
 			creeTextureCase(Jeu->renderer, Jeu->TextureBank->bank[0], Jeu->font, tailleCasePx, valCase);
 	} else if (Jeu->TextureBank->bank[0]->taille < (int)(log2(valCase))) {
-		// On crée la texture correspondant a la valeur de la case tout en s'assurant que les texture pour les valeurs
-		// precedantes existes
+		// On créé la texture correspondante à la valeur de la case tout en s'assurant que les textures pour les valeurs
+		// précédentes existes
 		for (int_text = Jeu->TextureBank->bank[0]->taille; int_text < (int)(log2(valCase)); int_text++) {
 			Jeu->TextureBank->bank[0] = creeTextureCase(Jeu->renderer, Jeu->TextureBank->bank[0], Jeu->font, tailleCasePx,
 														(int)pow(2, int_text + 1));
@@ -145,11 +145,11 @@ void dessinePlateau(jeu *Jeu)
 	int int_x;
 	for (int_y = 0; int_y < Jeu->etatJeu->plateau->taille; int_y++) {
 		for (int_x = 0; int_x < Jeu->etatJeu->plateau->taille; int_x++) {
-			// On dessine l'arriere plan (la grille)
+			// On déssine l'arriere plan (la grille)
 			renderTexture(Jeu->TextureBank->bank[1]->tabTex[0], Jeu->renderer,
 						  (int_x * (tailleCasePx + 4)) + decallageVert - 2, (int_y * (tailleCasePx + 4)) + decallageVert - 2,
 						  tailleCasePx + 4, tailleCasePx + 4);
-			// Puis on dessine les case si leur valeur est superieur a 0
+			// Puis on déssine les cases si leur valeur est superieure a 0
 			if (Jeu->etatJeu->plateau->tab[int_y][int_x] != 0) {
 				creationTextureCase(Jeu, Jeu->etatJeu->plateau->tab[int_y][int_x], tailleCasePx);
 				renderTexture(Jeu->TextureBank->bank[0]->tabTex[(int)(log2(Jeu->etatJeu->plateau->tab[int_y][int_x])) - 1],

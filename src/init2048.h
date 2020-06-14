@@ -10,7 +10,7 @@
 #ifndef __INIT2048_H__
 /**
  *  @def __INIT2048_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __INIT2048_H__
 
@@ -64,7 +64,7 @@ void freeJeu(etatJeu *jeu);
  *
  *  @brief Sauvegarde le jeu dans un fichier
  *
- *  @param[in] jeu : pointeur ver le jeu a sauvegarder
+ *  @param[in] jeu : pointeur vers le jeu a sauvegarder
  *
  */
 void savJeu(etatJeu *jeu);
@@ -74,7 +74,7 @@ void savJeu(etatJeu *jeu);
  *  @version 0.1
  *  @date Sun 10 May 2020 16:22
  *
- *  @brief
+ *  @brief charge le jeu
  *
  *  @param[in] chemin : chemin vers la sauvegarde
  *  @return pointeur vers le jeu chargé

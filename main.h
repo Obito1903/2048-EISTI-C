@@ -10,7 +10,7 @@
 #ifndef __MAIN_H__
 /**
 *  @def __MAIN_H__
-*  Constante permettant de savoirs si le fichier à déjà été chargé.
+*  Constante permettant de savoir si le fichier a déjà été chargé.
 */
 #define __MAIN_H__
 
@@ -23,7 +23,7 @@
  *  @version 0.1
  *  @date Wed 06 May 2020 14:10
  *
- *  @brief Traite les argument passer en parametre de l'executable
+ *  @brief Traite les arguments passer en parametre de l'executable
  *
  *  @param[in] argc : nombre d'arguments
  *  @param[in] argv : Tableau d'arguments

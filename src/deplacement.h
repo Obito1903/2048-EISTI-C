@@ -10,7 +10,7 @@
 #ifndef __DEPLACEMENT_H__
 /**
  *  @def __DEPLACEMENT_H__
- *  Constante permettant de savoirs si le fichier à déjà été chargé.
+ *  Constante permettant de savoir si le fichier a déjà été chargé.
  */
 #define __DEPLACEMENT_H__
 
