@@ -1,0 +1,26 @@
+https://sbedirect.com/fr/blog/article/comprendre-la-rfid-en-10-points.html : comprendre la RFID
+
+https://www.elliaden.com/dossiers/badges/technologie-mifare.html : technologie Mifare - standard du RFID 
+
+https://en.wikipedia.org/wiki/Radio-frequency_identification?oldformat=true : RFID
+
+https://www.winnix.net/fr/news/The-advantages-and-disadvantages-of-RFID.htm : Avantages / inconvénients
+
+https://lipn.univ-paris13.fr/~loddo/files/PROJETS-TUTORES_2016-17/RAPPORTS_2017/g08_FABRE_projet_RFID_LEBORGNE_NDIAYE.pdf : rapport de stage RFID 
+
+https://www.francetvinfo.fr/sciences/high-tech/la-micropuce-rfid-nouvelle-technologie-revolutionnaire_2313908.html: video sur les limites de la RFID / Implantation chez l'homme
+
+https://www.futura-sciences.com/tech/actualites/technologie-rfid-dangers-derives-puces-sous-cutanees-9090/ : Derives RFID 1 
+
+https://www.futura-sciences.com/tech/actualites/technologie-puces-rfid-bientot-obligatoires-nos-animaux-compagnie-8958/ : Derives RFID 2 : Obligations pour les animaux domestiques
+
+https://www.futura-sciences.com/tech/actualites/technologie-premier-virus-puces-rfid-tres-contagieuses-8469/ : Derives RFID 3 : piratage
+
+https://www.futura-sciences.com/tech/actualites/technologie-rubee-nouvelle-alternative-technologie-rfid-10386/ : successeur du RFID : le rubee
+
+http://igm.univ-mlv.fr/~dr/XPOSE2012/RFID_Modbus/RFID/histoire.html : Histoire et plus sur la RFID
+
+
+https://core.ac.uk/download/pdf/143854065.pdf : THESE RFID (EN)
+
+https://www.railway-technology.com/features/feature1684/ : RFID dans les trains (EN)

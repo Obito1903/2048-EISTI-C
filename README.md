@@ -4,6 +4,8 @@ Projet 2020.
 
 [Git](https://gitlab.etude.eisti.fr/rodriguess/projet-2020)
 
+Le rapport ce trouve dans le dossier Docs
+
 ## Utilisation
 
 ### Compilation
