@@ -4,7 +4,7 @@ Projet 2020.
 
 [Git](https://gitlab.etude.eisti.fr/rodriguess/projet-2020)
 
-Le rapport ce trouve dans le dossier Docs
+Le rapport ce trouve dans le dossier [Docs](Docs/rapport_2048_Samuel_Theo_William_Hugo.pdf)
 
 ## Utilisation
 
